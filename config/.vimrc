@@ -1,12 +1,10 @@
 source ~/.vim/bundle.vim
 
 source ~/.vim/basic.vim
-source ~/.vim/syntax.vim
-source ~/.vim/indentation.vim
-
-source ~/.vim/skin.vim
-source ~/.vim/plugin.vim
-source ~/.vim/bind.vim
+source ~/.vim/appearance.vim
+source ~/.vim/unite.vim
+source ~/.vim/key.vim
+source ~/.vim/config.vim
 
 augroup vimrc-local
   autocmd!
@@ -19,9 +17,3 @@ function! s:vimrc_local(loc)
     source `=i`
   endfor
 endfunction
-
-" .vimrc.local template
-" set shiftwidth=4  " Indent size automatically inserted by vim
-" set softtabstop=0 " Indent size by pushing <Tab>, same as tabstop by 0
-" set tabstop=8     " <Tab> width in screen
-" set noexpandtab   " Don't replace tab with space

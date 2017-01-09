@@ -1,89 +1,203 @@
-set nocompatible
-filetype plugin indent off
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle'))
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-" Language
-NeoBundleLazy 'vim-ruby/vim-ruby', { 'autoload': { 'filetypes': 'ruby' } }
-NeoBundleLazy 'mrkn/vim-cruby', { 'autoload': { 'filetypes': 'c' } }
-" NeoBundle 'tpope/vim-rails'
-NeoBundleLazy 'tpope/vim-haml', { 'autoload': { 'filetypes': 'haml' } }
-NeoBundleLazy 'slim-template/vim-slim', { 'autoload': { 'filetypes': 'slim' } }
-" NeoBundle 'plasticboy/vim-markdown'
-NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': ['coffee'] } }
-" NeoBundle 'groenewege/vim-less'
-" NeoBundle 'vim-scripts/coq-syntax'
-" NeoBundle 'eagletmt/coqtop-vim'
-" NeoBundle 'haruyama/scheme.vim'
-NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes': ['go'] } }
-" NeoBundle 'vim-jp/vim-go-extra'
-" NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
-" NeoBundle 'wannesm/wmnusmv.vim'
-" NeoBundleLazy 'shinka-cb/smv_vim', {'autoload':{'filetypes':['smv']}}
-" NeoBundle 'datsuns/vim-smv'
-NeoBundleLazy 'vim-scripts/applescript.vim', { 'autoload': { 'filetypes': ['applescript'] } }
-" NeoBundle 'aklt/plantuml-syntax'
-" NeoBundle 'pbrisbin/vim-syntax-shakespeare'
-" NeoBundle 'mustache/vim-mustache-handlebars'
-" NeoBundle 'eagletmt/neco-ghc'
-" NeoBundle 'eagletmt/ghcmod-vim'
-" NeoBundle 'itchyny/vim-haskell-indent'
-" NeoBundle 'Shougo/vinarise.vim'
-NeoBundleLazy 'rodjek/vim-puppet', { 'autoload': { 'filetypes': ['puppet'] } }
-NeoBundleLazy 'elixir-lang/vim-elixir', { 'autoload': { 'filetypes': ['elixir'] } }
-NeoBundleLazy 'vim-jp/vim-cpp', { 'autoload': { 'filetypes': ['c', 'cpp'] } }
-NeoBundleLazy 'othree/yajs.vim', { 'autoload': { 'filetypes': ['javascript'] } }
-NeoBundleLazy 'othree/es.next.syntax.vim', { 'autoload': { 'filetypes': ['javascript'] } }
-NeoBundleLazy 'gavocanov/vim-js-indent', { 'autoload': { 'filetypes': ['javascript'] } }
-NeoBundleLazy 'rust-lang/rust.vim', { 'autoload' : { 'filetypes': 'rust' } }
-NeoBundleLazy 'cespare/vim-toml', { 'autoload' : { 'filetypes': 'toml' } }
-NeoBundleLazy 'racer-rust/vim-racer', { 'autoload' : { 'filetypes': 'rust' } }
+ " Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Completion
-" NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundleLazy 'Shougo/neocomplete.vim', { 'autoload': { 'insert': 1 } }
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Skin
-" NeoBundle 'Lokaltog/powerline', 'da6667b', { 'rtp' : 'powerline/bindings/vim' } " too slow to load
-" NeoBundle 'bling/vim-airline'
-NeoBundle 'w0ng/vim-hybrid'
+" General {{{
+  " ファイルツリー表示
+  NeoBundle 'Shougo/vimfiler'
 
-" Editing
-NeoBundleLazy 'bronson/vim-trailing-whitespace', { 'autoload': { 'commands': ['FixWhitespace'], "insert": 1 } }
-NeoBundleLazy 'osyo-manga/vim-over', { 'autoload': { 'commands': ['OverCommandLine'] } }
-" NeoBundle 'thinca/vim-prettyprint'
-" NeoBundle 'haya14busa/incsearch.vim'
-" NeoBundle 'jeetsukumaran/vim-indentwise'
-NeoBundle 'tyru/skk.vim'
-" NeoBundle 'tyru/skkdict.vim'
-NeoBundle 'vim-scripts/netrw.vim'
-NeoBundleLazy 'tpope/vim-abolish', { 'autoload': { 'insert': 1 } }
+  " インデント表示
+  NeoBundle 'Yggdroot/indentLine'
 
-" ctags
-" NeoBundle 'szw/vim-tags'
+  " コマンドラインでemacsキーバインド
+  NeoBundle 'houtsnip/vim-emacscommandline'
 
-" Unite
-NeoBundleLazy 'Shougo/unite.vim', '76612ec', { 'autoload': { 'commands': ['Unite', 'UniteWithBufferDir'] } }
-" NeoBundle 'yuku-t/unite-git'
-NeoBundleLazy 'k0kubun/unite-git-files', { 'depends': 'Shougo/unite.vim', 'autoload': { 'unite_sources': ['git_files'] } }
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+  " コマンド繰り返し
+  NeoBundle 'tpope/vim-repeat'
 
-" Git
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'k0kubun/vim-open-github', { 'autoload': { 'commands': ['OpenGithub'] } }
-" NeoBundle 'gregsexton/gitv'
-NeoBundleLazy 'airblade/vim-gitgutter', { 'autoload': { 'insert': 1 } }
+  " Vim Shell
+  NeoBundle 'Shougo/vimshell'
+
+  " ホワイトスペース
+  NeoBundle 'bitc/vim-bad-whitespace'
+
+  " 非同期用処理
+  NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+    \ }
+
+" }}}
+
+" Edit {{{
+  " 日本語整形
+  " NeoBundle 'fuenor/JpFormat.vim'
+
+  " 括弧などで囲む
+  NeoBundle 'tpope/vim-surround'
+
+  " 範囲拡大
+  NeoBundle 'terryma/vim-expand-region'
+
+  " イコールの前後を整形
+  " NeoBundle 'smartchr'
+
+  " align
+  NeoBundle 'junegunn/vim-easy-align'
+
+  " 括弧補完
+  NeoBundle 'cohama/lexima.vim'
+
+  " メモ
+  " NeoBundle 'fuenor/qfixhowm'
+
+  " 自動保存
+  NeoBundle 'vim-scripts/vim-auto-save'
+" }}}
+
+" Search {{{
+  " grep強化
+  NeoBundle 'grep.vim'
+  " grep
+  NeoBundle 'fuenor/qfixgrep'
+  " 移動
+  NeoBundle 'Lokaltog/vim-easymotion'
+" }}}
+
+" Unite {{{
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/neomru.vim'
+  NeoBundle 'Shougo/unite-outline'
+" }}}
+
+" Completion {{{
+  " HTML
+  NeoBundle 'mattn/emmet-vim'
+  " Dockerfile
+  NeoBundle 'ekalinin/Dockerfile.vim'
+
+  " 補完
+  NeoBundle 'Shougo/neocomplete'
+
+  " スニペット
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
+
+  " submodule
+  " NeoBundle 'kana/vim-submode'
+" }}}
+
+" ColorScheme {{{
+  NeoBundle 'tomasr/molokai'
+  " NeoBundle 'vim-scripts/Lucius'
+  " NeoBundle 'sickill/vim-monokai'
+  " NeoBundle 'w0ng/vim-hybrid'
+  " NeoBundle 'chriskempson/vim-tomorrow-theme'
+  " NeoBundle 'morhetz/gruvbox'
+  " NeoBundle 'altercation/vim-colors-solarized'
+" }}}
+
+" Git {{{
+  " Git grep
+  NeoBundle 'lambdalisue/unite-grep-vcs'
+  NeoBundle 'thinca/vim-qfreplace'
+  NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'gregsexton/gitv'
+  NeoBundle 'AndrewRadev/gapply.vim'
+  NeoBundle 'kmnk/vim-unite-giti'
+  NeoBundle 'cohama/agit.vim'
+" }}}
+
+" Programming {{{
+  " コード評価
+  NeoBundle 'thinca/vim-quickrun'
+  " コメントアウト
+  NeoBundle 'tyru/caw.vim.git'
+
+  " シンタックスチェック
+  " NeoBundle 'scrooloose/syntastic'
+  NeoBundle "jceb/vim-hier"
+  NeoBundle "osyo-manga/shabadou.vim"
+  NeoBundle "osyo-manga/vim-watchdogs"
+
+  " Rails
+  NeoBundle 'tpope/vim-rails'
+
+  " if end など飛ぶ
+  NeoBundle 'vimtaku/hl_matchit.vim.git'
+
+  " end補完
+  NeoBundle 'tpope/vim-endwise.git'
+
+  " ifやtrueをスイッチ
+  NeoBundle 'AndrewRadev/switch.vim'
+
+  " 入力補助
+  NeoBundleLazy 'kana/vim-smartchr'
+
+  " Go
+  NeoBundle 'fatih/vim-go'
+  NeoBundle 'dgryski/vim-godef'
+  NeoBundle 'vim-jp/vim-go-extra'
+  NeoBundle 'google/vim-ft-go'
+
+  " taglist
+  NeoBundle 'vim-scripts/taglist.vim'
+  NeoBundle 'szw/vim-tags'
+
+  " Dash
+  NeoBundle 'rizzatti/dash.vim'
+
+  " tex
+  NeoBundle 'lervag/vimtex'
+
+  " REPL
+  NeoBundle 'ujihisa/repl.vim'
+" }}}
+
+" Syntax {{{
+  " log file
+  NeoBundle 'vim-scripts/AnsiEsc.vim'
+
+  " slim
+  NeoBundle 'slim-template/vim-slim'
+
+  " swift
+  NeoBundle 'toyamarinyon/vim-swift'
+
+  NeoBundle 'majutsushi/tagbar'
+" }}}
+
+  " powerline
+  NeoBundle 'itchyny/lightline.vim'
+
+" markdown {{{
+  NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'kannokanno/previm'
+  NeoBundle 'tyru/open-browser.vim'
+" }}}
+
+set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
+
+call neobundle#end()
+filetype plugin indent on
 
 NeoBundleCheck
-
-filetype plugin indent on
