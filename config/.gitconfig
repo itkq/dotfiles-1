@@ -1,5 +1,5 @@
 [user]
-  name =
+  name = itkq
   email = kuogsi@gmail.com
 [include]
   path = .gitconfig.local
@@ -22,10 +22,10 @@
 [init]
   templatedir = ~/.git-template
 [push]
-	default = simple
+  default = simple
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [pull]
   rebase = true
 [commit]
-	template = ~/.commit_template
+  template = ~/.commit_template
