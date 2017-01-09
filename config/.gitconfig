@@ -1,6 +1,6 @@
 [user]
-  name = Takashi Kokubun
-  email = takashikkbn@gmail.com
+  name =
+  email = kuogsi@gmail.com
 [include]
   path = .gitconfig.local
 [color]
@@ -27,20 +27,5 @@
 	autosetuprebase = always
 [pull]
   rebase = true
-[ghq]
-  root = ~/src
-[url "git@github.com:"]
-  pushInsteadOf = https://github.com/
-  pushInsteadOf = git://github.com/
-[url "git@gist.github.com:"]
-  pushInsteadOf = https://gist.github.com/
-  pushInsteadOf = git://gist.github.com/
-[rebuild]
-  repo = k0kubun/dotfiles
-  scriptdir = script
-  directory = ~/src/github.com/k0kubun/dotfiles
-  dependency = symlink.sh brew.sh cask.sh ruby.sh karabiner.sh
-[merge "mergepbx"]
-  name = Xcode project files merger
-  driver = mergepbx %O %A %B
-  note = auto-generated configuration by `cpad2 upgrade`
+[commit]
+	template = ~/.commit_template
