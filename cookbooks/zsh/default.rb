@@ -1,8 +1,3 @@
-if node[:platform] != 'darwin'
-  package 'zsh'
-  dotfile '.zshrc.Linux'
-end
-
 dotfile '.zsh'
 dotfile '.zshrc'
 

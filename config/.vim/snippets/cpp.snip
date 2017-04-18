@@ -1,0 +1,41 @@
+snippet     kyopuro
+abbr        template for kyougi programming
+    #include <iostream>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <ctime>
+    #include <string>
+    #include <vector>
+    #include <map>
+    #include <list>
+    #include <stack>
+    #include <queue>
+    #include <utility>
+    #include <algorithm>
+    #include <functional>
+    #include <cassert>
+
+    #define FOR(i,a,b) for(int i=(a);i<(b);i++)
+    #define REP(i,n) for(int i=0;i<n;i++)
+    #define DEBUG(x) cout<<#x<<": "<<x<<endl;
+    #define ALL(a) (a).begin(),(a).end()
+
+    #define pb push_back
+
+    using namespace std;
+    typedef unsigned long ul;
+    typedef long long ll;
+    typedef vector<int> vi;
+    typedef vector<vi> vii;
+
+    int main() {
+        ${0:TARGET}
+    }
+
+snippet     cout
+abbr        cout
+    cout << ${0:TARGET} << endl;
+
+snippet     cin
+abbr        cin
+    cin >> ${0:TARGET};

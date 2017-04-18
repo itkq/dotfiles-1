@@ -3,13 +3,14 @@ package 'xclip'
 
 dotfile '.tmux.conf'
 
-execute 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm' do
+git '~/.tmux/plugins/tpm' do
+  repository 'https://github.com/tmux-plugins/tpm.git'
   not_if 'test -e ~/.tmux/plugins/tpm/'
 end
 
-execute 'git clone https://github.com/erikw/tmux-powerline.git ~/tmux-powerline' do
+git '~/tmux-powerline' do
+  repository 'https://github.com/erikw/tmux-powerline.git'
   not_if 'test -e ~/tmux-powerline/'
-  user node[:user]
 end
 
 dotfile '.tmux-powerlinerc'
