@@ -30,7 +30,7 @@ hi LineNr ctermfg=241
 " hi CursorLineNr ctermbg=233 ctermfg=166
 hi CursorLineNr ctermfg=166
 hi MatchParen term=reverse cterm=bold ctermfg=brown ctermbg=darkcyan
-
+hi Comment ctermfg=245
 set cursorline    " 現在行ハイライト
 hi clear CursorLine
 
