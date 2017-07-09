@@ -1,6 +1,6 @@
 node.reverse_merge!(
   xremap: {
-    repo_path: "#{ENV['HOME']}/src/github.com/k0kubun/xremap",
+    repo_path: "#{ENV['HOME']}/src/github.com/itkq/xremap",
   }
 )
 package 'bison'
@@ -8,7 +8,7 @@ package 'libx11-dev'
 package 'ruby'
 
 git node[:xremap][:repo_path] do
-  repository 'https://github.com/k0kubun/xremap'
+  repository 'https://github.com/itkq/xremap'
   not_if 'which xremap'
   user node[:user]
 end

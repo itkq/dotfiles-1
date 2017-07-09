@@ -1,6 +1,6 @@
 [user]
-  name = Takashi Kokubun
-  email = takashikkbn@gmail.com
+  name = Takuya Kosugiyama
+  email = kuogsi@gmail.com
 [include]
   path = .gitconfig.local
 [color]
@@ -37,7 +37,7 @@
   pushInsteadOf = https://gist.github.com/
   pushInsteadOf = git://gist.github.com/
 [rebuild]
-  repo = k0kubun/dotfiles
+  repo = itkq/dotfiles
   scriptdir = script
-  directory = ~/src/github.com/k0kubun/dotfiles
+  directory = ~/src/github.com/itkq/dotfiles
   dependency = symlink.sh brew.sh cask.sh ruby.sh karabiner.sh

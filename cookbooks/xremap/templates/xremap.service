@@ -6,7 +6,7 @@ Description=xremap
 
 [Service]
 KillMode=process
-ExecStart=/usr/local/bin/xremap /home/k0kubun/.xremap
+ExecStart=/usr/local/bin/xremap /home/itkq/.xremap
 ExecStop=/usr/bin/killall xremap
 Restart=always
 Environment=DISPLAY=<%= ENV['DISPLAY'] %>

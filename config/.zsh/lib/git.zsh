@@ -76,7 +76,7 @@ function mine() {
 	fi
 
 	local repo_name=$(git rev-parse --show-toplevel | sed -e "s/^.*\///g")
-	local repo_path="github.com:k0kubun/${repo_name}"
+	local repo_path="github.com:itkq/${repo_name}"
 	git remote add mine $repo_path
 	git fetch mine
 	git branch --set-upstream-to=mine/`current-branch` `current-branch`
