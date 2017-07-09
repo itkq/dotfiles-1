@@ -1,79 +1,118 @@
-" スクロール
-" noremap <Space>j <C-f>
-" noremap <Space>k <C-b>
+" to Normal Mode
+inoremap <silent> jj <ESC>
+inoremap <silent> jf <ESC>
+imap <C-j> <ESC>
+
+" 挿入モード emacs風移動
+inoremap <silent> <C-n> <Down>
+inoremap <silent> <C-p> <Up>
+inoremap <silent> <C-b> <Left>
+inoremap <silent> <C-f> <Right>
+inoremap <silent> <C-a> <Home>
+inoremap <silent> <C-e> <End>
+inoremap <silent> <C-d> <Del>
+
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
+" ノーマルモードでエンターキー改行
+noremap <CR> o<ESC>
+
+
+" 行末までヤンク
+nnoremap Y y$
+
+" タブ操作
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+
+""" タブ移動
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
 
 " The prefix key.
-nnoremap [Tag] <Nop>
-nmap <Space> [Tag]
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
-" for n in range(1, 9)
-"   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
-" endfor
 
-" tabline
-map <silent> [Tag]t :tablast <bar> tabnew <bar> Explore <bar> vs<CR>
-map <silent> [Tag]w :tabclose<CR>
-map <silent> [Tag]p :tabnext<CR>
-map <silent> [Tag]o :tabprevious<CR>
+" map <silent> [Tag]c :tablast <bar> tabnew<CR>
+" " tc 新しいタブを一番右に作る
+" map <silent> [Tag]x :tabclose<CR>
+" " tx タブを閉じる
+" map <silent> [Tag]n :tabnext<CR>
+" " tn 次のタブ
+" map <silent> [Tag]p :tabprevious<CR>
+" " tp 前のタブ
 
-" ウィンドウ切り替え
-" nnoremap [Tag]h <C-w>h
-" nnoremap [Tag]l <C-w>l
+nnoremap <silent> <C-L> :noh<C-L><CR>
 
-" Explore
-nnoremap <silent> ;e :<C-u>Explore<CR>
+" vimshell
+nnoremap <Space>vs :VimShell<Enter>
 
-" End Vim
-nnoremap <silent> ;xc :qa!<CR>
 
-" Unite.vim
-nnoremap <silent> ;u :<C-u>Unite buffer git_files<CR>
-autocmd FileType unite imap ;q <C-u><C-h>
-autocmd BufLeave * silent! iunmap ;q
+" nnoremap <Space>h ^
+" nnoremap <Space>l $
+" nnoremap H ^
+" nnoremap L $
 
-" ctags
-nnoremap <silent> [Tag]d <C-]>
-"nnoremap <silent> [Tag]d :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
-nnoremap <silent> [Tag]f g<C-]>
-nnoremap <silent> [Tag]u <C-o>
-nnoremap <silent> [Tag]i <C-i>
 
-" Hash Rocket
-command! -bar -range=% NotRocket :<line1>,<line2>s/:\([a-z_]\+\)\s*=>/\1:/g
-vnoremap <silent> gr :NotRocket<CR>
+" vimgrep
+nmap <C-G> :Vimgrep /\<<C-R><C-W>\>/ %
+autocmd QuickFixCmdPost *grep* cwindow
 
-" Source .vimrc
-noremap <silent> ;s :<C-u>source<Space>~/.vimrc<CR>
+" quick
+nnoremap W :<C-u>wq<CR>
+nnoremap D :<C-u>q<CR>
 
-" Cursor in command line
-cmap <C-f> <Right>
-cmap <C-b> <Left>
-
-" paste
-if has('mac')
-  nnoremap gp :<C-u>r !pbpaste<CR>
-else
-  nnoremap gp :<C-u>r !xsel -b<CR>
-endif
-
-" delete highlight
-nnoremap <silent> gh :let @/=''<CR>
-
-" Git Blame
-nnoremap <silent> gb :<C-u>Gblame<CR>
-
-" Golang
-noremap <silent> ;t :!go test .<CR>
-noremap <silent> ;r :!go run %<CR>
-
-" break undo chain when using insert mode deletions (:h i_CTRL-G_u)
-inoremap <C-u> <C-g>u<C-u>
-inoremap <C-w> <C-g>u<C-w>
-
-" pane size changer
-nnoremap <C-w>> <C-w>14>
-nnoremap <C-w>< <C-w>14<
-
-" binding.pry
-" inoremap <C-v> begin;require "pry";binding.pry;rescue LoadError;require "irb";IRB.setup(nil);IRB.dbg(binding);end
-inoremap <C-v> require "pry";binding.pry
+" sudo
+cabbr w!! w !sudo tee > /dev/null %

@@ -1,36 +1,39 @@
+filetype plugin indent on     " required!
+filetype indent on
+
+set notitle       " 起動時に非表示
+set number        " 行番号表示
+set showmatch     " 対応する括弧を表示
+set showcmd       " コマンドをステータス行に表示
+set laststatus=2  " 常にステータス行を表示
+
+" 全角スペースの表示
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+match ZenkakuSpace /　/
+
+" コマンド実行中は再描画しない
+set lazyredraw
+" 高速ターミナル接続を行う
+set ttyfast
+
 syntax on
-set t_Co=256
+colorscheme molokai
 set background=dark
-colorscheme hybrid
-hi Normal ctermbg=NONE
-hi LineNr ctermfg=242
 
-" Anywhere SID.
-function! s:SID_PREFIX()
-  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
-endfunction
+" hybrid
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" colorscheme hybrid
 
-" Set tabline.
-function! s:my_tabline()  "{{{
-  let s = ''
-  for i in range(1, tabpagenr('$'))
-    let bufnrs = tabpagebuflist(i)
-    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-    let no = i  " display 0-origin tabpagenr.
-    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-    let title = fnamemodify(bufname(bufnr), ':t')
-    let title = '[' . title . ']'
-    let s .= '%'.i.'T'
-    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-    let s .= no . ':' . title
-    let s .= mod
-    let s .= '%#TabLineFill# '
-  endfor
-  let s .= '%#TabLineFill#%T%=%#TabLine#'
-  return s
-endfunction "}}}
-let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
+" hi LineNr ctermbg=233 ctermfg=239
+hi LineNr ctermfg=241
+" hi CursorLineNr ctermbg=233 ctermfg=166
+hi CursorLineNr ctermfg=166
+hi MatchParen term=reverse cterm=bold ctermfg=brown ctermbg=darkcyan
 
-" Statusline
-set statusline=%{fugitive#statusline()}\ %<%f\ %=%{&fenc!=''?&fenc:&enc}\ %y\ %l/%L:%c\ %#Cursor#%#StatusLine#
+set cursorline    " 現在行ハイライト
+hi clear CursorLine
+
+
+set ambiwidth=double
+highlight Normal ctermbg=None

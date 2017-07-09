@@ -6,60 +6,129 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vim/bundle'))
 endif
 
-" Language
-NeoBundleLazy 'vim-ruby/vim-ruby', { 'autoload': { 'filetypes': 'ruby' } }
-NeoBundle 'kana/vim-textobj-user'
-NeoBundleLazy 'rhysd/vim-textobj-ruby', { 'autoload': { 'filetypes': 'ruby' } }
-NeoBundleLazy 'mrkn/vim-cruby', { 'autoload': { 'filetypes': ['c', 'cruby'] } }
-" NeoBundle 'tpope/vim-rails'
-NeoBundleLazy 'tpope/vim-haml', { 'autoload': { 'filetypes': 'haml' } }
-NeoBundleLazy 'slim-template/vim-slim', { 'autoload': { 'filetypes': 'slim' } }
-NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': ['coffee'] } }
-NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes': ['go'] } }
-" NeoBundleLazy 'vim-scripts/applescript.vim', { 'autoload': { 'filetypes': ['applescript'] } }
-" NeoBundle 'Shougo/vinarise.vim'
-" NeoBundleLazy 'rodjek/vim-puppet', { 'autoload': { 'filetypes': ['puppet'] } }
-" NeoBundleLazy 'elixir-lang/vim-elixir', { 'autoload': { 'filetypes': ['elixir'] } }
-NeoBundleLazy 'vim-jp/vim-cpp', { 'autoload': { 'filetypes': ['c', 'cpp'] } }
-NeoBundleLazy 'othree/yajs.vim', { 'autoload': { 'filetypes': ['javascript'] } }
-NeoBundleLazy 'othree/es.next.syntax.vim', { 'autoload': { 'filetypes': ['javascript'] } }
-NeoBundleLazy 'gavocanov/vim-js-indent', { 'autoload': { 'filetypes': ['javascript'] } }
-" NeoBundleLazy 'rust-lang/rust.vim', { 'autoload' : { 'filetypes': 'rust' } }
-" NeoBundleLazy 'cespare/vim-toml', { 'autoload' : { 'filetypes': 'toml' } }
-" NeoBundleLazy 'racer-rust/vim-racer', { 'autoload' : { 'filetypes': 'rust' } }
-NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'autoload': { 'filetypes': ['java'] } }
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Completion
-" NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundleLazy 'Shougo/neocomplete.vim', { 'autoload': { 'insert': 1 } }
+" General {{{
+  NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'Yggdroot/indentLine'
+  NeoBundle 'houtsnip/vim-emacscommandline'
+  NeoBundle 'tpope/vim-repeat'
+  NeoBundle 'Shougo/vimshell'
+  NeoBundle 'bitc/vim-bad-whitespace'
 
-" Skin
-NeoBundle 'w0ng/vim-hybrid'
+  NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+    \ }
+" }}}
 
-" Editing
-NeoBundleLazy 'bronson/vim-trailing-whitespace', { 'autoload': { 'commands': ['FixWhitespace'], "insert": 1 } }
-NeoBundleLazy 'osyo-manga/vim-over', { 'autoload': { 'commands': ['OverCommandLine'] } }
-" NeoBundle 'tyru/skk.vim'
-" NeoBundle 'tyru/skkdict.vim'
-NeoBundle 'vim-scripts/netrw.vim'
-NeoBundleLazy 'tpope/vim-abolish', { 'autoload': { 'insert': 1 } }
+" Edit {{{
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'terryma/vim-expand-region'
+  " NeoBundle 'smartchr'
+  NeoBundle 'junegunn/vim-easy-align'
+  NeoBundle 'cohama/lexima.vim'
+  NeoBundle 'vim-scripts/vim-auto-save'
+" }}}
 
-" Unite
-NeoBundleLazy 'Shougo/unite.vim', '76612ec', { 'autoload': { 'commands': ['Unite', 'UniteWithBufferDir'] } }
-NeoBundleLazy 'k0kubun/unite-git-files', { 'depends': 'Shougo/unite.vim', 'autoload': { 'unite_sources': ['git_files'] } }
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+" Search {{{
+  NeoBundle 'grep.vim'
+  NeoBundle 'fuenor/qfixgrep'
+  NeoBundle 'Lokaltog/vim-easymotion'
+" }}}
 
-" Git
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'k0kubun/vim-open-github', { 'autoload': { 'commands': ['OpenGithub'] } }
-NeoBundleLazy 'airblade/vim-gitgutter', { 'autoload': { 'insert': 1 } }
+" Unite {{{
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/neomru.vim'
+  NeoBundle 'Shougo/unite-outline'
+" }}}
+
+" Completion {{{
+  NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'ekalinin/Dockerfile.vim'
+  NeoBundle 'Shougo/neocomplete'
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
+" }}}
+
+" ColorScheme {{{
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'w0ng/vim-hybrid'
+  " NeoBundle 'vim-scripts/Lucius'
+  " NeoBundle 'sickill/vim-monokai'
+  " NeoBundle 'w0ng/vim-hybrid'
+  " NeoBundle 'chriskempson/vim-tomorrow-theme'
+  " NeoBundle 'morhetz/gruvbox'
+  " NeoBundle 'altercation/vim-colors-solarized'
+
+  " powerline
+  NeoBundle 'itchyny/lightline.vim'
+  " transparent background of line number
+  NeoBundle 'miyakogi/seiya.vim'
+" }}}
+
+" Git {{{
+  " Git grep
+  NeoBundle 'lambdalisue/unite-grep-vcs'
+  NeoBundle 'thinca/vim-qfreplace'
+  NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'gregsexton/gitv'
+  NeoBundle 'AndrewRadev/gapply.vim'
+  NeoBundle 'kmnk/vim-unite-giti'
+  NeoBundle 'cohama/agit.vim'
+" }}}
+
+" Programming {{{
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'tyru/caw.vim.git'
+  " NeoBundle 'scrooloose/syntastic'
+  NeoBundle "jceb/vim-hier"
+  NeoBundle "osyo-manga/shabadou.vim"
+  NeoBundle "osyo-manga/vim-watchdogs"
+  NeoBundle 'tpope/vim-rails'
+  NeoBundle 'vimtaku/hl_matchit.vim.git'
+  NeoBundle 'tpope/vim-endwise.git'
+  NeoBundle 'AndrewRadev/switch.vim'
+  NeoBundleLazy 'kana/vim-smartchr'
+
+  " Go
+  NeoBundle 'fatih/vim-go'
+  NeoBundle 'dgryski/vim-godef'
+  NeoBundle 'vim-jp/vim-go-extra'
+  NeoBundle 'google/vim-ft-go'
+
+  " taglist
+  NeoBundle 'vim-scripts/taglist.vim'
+  NeoBundle 'szw/vim-tags'
+
+  " Dash
+  NeoBundle 'rizzatti/dash.vim'
+
+  " tex
+  NeoBundle 'lervag/vimtex'
+
+  " REPL
+  NeoBundle 'ujihisa/repl.vim'
+" }}}
+
+" Syntax {{{
+  NeoBundle 'vim-scripts/AnsiEsc.vim'
+  NeoBundle 'slim-template/vim-slim'
+  NeoBundle 'toyamarinyon/vim-swift'
+  NeoBundle 'majutsushi/tagbar'
+  NeoBundle 'itkq/fluentd-vim'
+" }}}
+
+" markdown {{{
+  NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'kannokanno/previm'
+  NeoBundle 'tyru/open-browser.vim'
+" }}}
 
 NeoBundleCheck
 
