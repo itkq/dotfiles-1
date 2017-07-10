@@ -2,11 +2,11 @@
 source ~/.zsh/bundle/zsh-context-sensitive-alias/csa.zsh
 csa_init
 function my_context_func {
-	local -a ctx
-	if [[ -e Gemfile ]]; then
-		ctx+=bundler
-	fi
-	csa_set_context $ctx
+  local -a ctx
+  if [[ -e Gemfile ]]; then
+    ctx+=bundler
+  fi
+  csa_set_context $ctx
 }
 typeset -ga chpwd_functions
 chpwd_functions+=my_context_func
