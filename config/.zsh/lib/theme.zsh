@@ -16,9 +16,9 @@ precmd() {
 
   if [[ "x$last_status" == "x0" ]]; then
     PROMPT="%F{cyan}%1v%f%2v%3v%F{green}%4v%f
-    $ "
+$ "
   else
     PROMPT="%F{cyan}%1v%f%F{red}%2v%f%3v%F{green}%4v%f
-    $ "
+$ "
   fi
 }
