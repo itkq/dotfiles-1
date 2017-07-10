@@ -63,6 +63,23 @@ function gp() {
 		git push
 	fi
 }
+function gpf() {
+  current_dir=$(git rev-parse --show-toplevel)
+  remote_url=$(git remote get-url --push origin)
+  echo "\e[33m[Warning] You are trying force pushing\e[m"
+  echo "  from: $current_dir:`current-branch`"
+  echo "    to: $remote_url:`current-branch`"
+  read Answer\?'Are you sure? [Y/n] '
+  case $Answer in
+    '' | [Yy]* )
+      git push -f origin `current-branch`
+      ;;
+    * )
+      echo "Force pushing interrupted."
+      return 1
+      ;;
+  esac
+}
 
 function gg() {
 	if [[ -n `git rev-parse --git-dir 2> /dev/null` ]]; then
