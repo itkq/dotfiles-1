@@ -8,6 +8,7 @@ include_cookbook 'peco'
 include_cookbook 'fzf'
 include_cookbook 'ag'
 include_cookbook 'thunderbolt'
+include_cookbook 'go'
 
 dotfile '.gemrc'
 dotfile '.karabiner'
