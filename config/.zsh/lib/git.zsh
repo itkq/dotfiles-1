@@ -1,14 +1,21 @@
 # Configuration for git
-alias gs="git status"
-alias gd="git diff"
-alias ga="git commit -am"
-alias gh="git branch"
-alias co="git checkout"
-alias origin="git pull origin master"
-alias amend="git commit --amend"
-alias ch='git rev-parse HEAD | sed -e "s/\(.\{7\}\).*/\1/" | tr -d "\n" | pbcopy'
-alias empty="git commit --allow-empty -m"
-
+alias gci="git commit"
+alias gcim="git commit -m"
+alias gm="git merge"
+alias gst="git status"
+alias gco="git checkout"
+alias gbr="git branch"
+alias ga="git add"
+alias gaa="ga -A"
+alias gf="git fetch"
+alias gd="git diff --word-diff=color"
+alias gignore="git rm -r --cached .; git add ."
+alias gca="git commit --amend"
+alias gcan="git commit --amend --no-edit"
+alias gcop='git status | grep modified | awk "{print \$2}" | peco | xargs git checkout'
+alias git_delete_local_branch='git branch --merged | grep -v "*" | grep -v master | grep -v for_tracking | xargs git branch -d'
+alias git_delete_remote_branch="git branch -a --merged | grep -v master | grep remotes/origin| sed -e 's% *remotes/origin/%%' | xargs -I% git push origin :%"
+alias gri="git rebase -i --autostash"
 alias current-branch='git rev-parse --abbrev-ref HEAD'
 
 function gl(){
