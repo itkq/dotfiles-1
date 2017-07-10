@@ -171,3 +171,30 @@ function ghe() {
 			;;
 	esac
 }
+
+
+GITHUB_USERNAME="Takuya Kosugiyama"
+LF=$'\\\x0A'
+
+function git_ig(){
+  gibo -l | tr '\t', '\n' | sed -e '/^$/d' | sort | sed -e '1,2d' |  peco --prompt "Select Language >" | xargs gibo >> .gitignore
+}
+
+function git_license(){
+  curl -H "Accept: application/vnd.github.drax-preview+json" -X GET https://api.github.com/licenses | jq ".[].url" | peco --prompt "Select License >" | sed -e "s/\"//g" | xargs -J % curl -H "Accept: application/vnd.github.drax-preview+json" -X GET % | jq ".body" | sed -e 's/^\"//' | sed -e 's/\"$//' | sed -e 's/\\\"/\"/g' | sed -e 's/\\n'/"$LF"'/g' > LICENSE
+}
+
+function git_add_remote_origin(){
+  curl -# -X GET https://api.github.com/users/${GITHUB_USERNAME}/repos | jq ".[].ssh_url" | peco | xargs git remote add origin
+}
+
+function git_setup(){
+  git init
+  git_ig
+  git_license
+  echo "# README" > README.md
+  git add .gitignore LICENSE README.md
+  git commit -m "first commit"
+  git_add_remote_origin
+  git push origin master
+}

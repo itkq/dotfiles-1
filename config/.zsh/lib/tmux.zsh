@@ -7,6 +7,12 @@ if [ -z "$TMUX" -a -z "$STY" ]; then
 	fi
 fi
 
+alias tma="tmux attach-session -t"
+alias tml="tmux list-session"
+alias tmr="tmux rename-session -t"
+alias tmn="tmux new-session -s"
+alias tmk="tmux kill-session -t"
+
 function create-session() {
 	if [ $# -ne 0 ]; then
 		target_dir=$1

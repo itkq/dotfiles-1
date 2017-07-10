@@ -22,3 +22,9 @@ export PATH="/opt/local/bin:$PATH"
 
 # El Capitan
 export CPATH=/usr/local/opt/openssl/include:$CPATH
+
+setopt no_beep
+setopt auto_cd
+
+# emacs key bind
+bindkey -e
