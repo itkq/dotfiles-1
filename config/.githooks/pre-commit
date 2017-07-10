@@ -1,6 +1,6 @@
 #!/bin/sh
 
-work_email="takashi-kokubun@cookpad.com"
+work_email="takuya-kosugiyama@cookpad.com"
 
 # Use private email address for repository in github.com
 if git config --get remote.origin.url | grep -q github.com; then

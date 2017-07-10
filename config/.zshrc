@@ -26,5 +26,5 @@ source ~/.zsh/lib/tmux.zsh
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
 [ -f ~/.zshrc.local ]   && source ~/.zshrc.local
 
-export NVM_DIR="/Users/kokubun/.nvm"
+export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
