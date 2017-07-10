@@ -21,6 +21,7 @@ source ~/.zsh/lib/languages.zsh
 source ~/.zsh/lib/peco.zsh
 source ~/.zsh/lib/theme.zsh
 source ~/.zsh/lib/tmux.zsh
+source ~/.zsh/lib/bundle.zsh
 
 # Environment-local configurations
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`

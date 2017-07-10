@@ -4,3 +4,9 @@
 [submodule "config/.vim/dicts"]
 	path = config/.vim/dicts
 	url = https://github.com/pocke/dicts
+[submodule "config/.zsh/bundle/enhancd"]
+	path = config/.zsh/bundle/enhancd
+	url = https://github.com/b4b4r07/enhancd
+[submodule "config/.zsh/bundle/zsh-syntax-highlightning"]
+	path = config/.zsh/bundle/zsh-syntax-highlightning
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
