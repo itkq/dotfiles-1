@@ -5,7 +5,7 @@ precmd() {
   LANG=en_US.UTF-8 vcs_info
 
   local left1="$(pwd) "
-  local left2="status: $last_status"
+  local left2="[$last_status]"
   local right1="$vcs_info_msg_0_"
 
   psvar=()
