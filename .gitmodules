@@ -10,3 +10,6 @@
 [submodule "config/.zsh/bundle/zsh-syntax-highlightning"]
 	path = config/.zsh/bundle/zsh-syntax-highlightning
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "config/.zsh/bundle/zsh-completions"]
+	path = config/.zsh/bundle/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
