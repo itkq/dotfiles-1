@@ -17,3 +17,8 @@ alias ..="cd .."
 
 # Short hand for karabiner gem
 alias dsl='karabiner dsl'
+
+function mkcd() {
+  mkdir $1
+  cd $1
+}
