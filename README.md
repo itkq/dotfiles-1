@@ -1,6 +1,6 @@
-# dotfiles
+# world
 
-My development environment
+Make my world
 
 ## Usage
 
@@ -10,4 +10,4 @@ My development environment
 
 ## Note
 
-History can be found in [legacy dotfiles](https://github.com/k0kubun/legacy-dotfiles).
+Forked from [k0kubun/dotfiles](https://github.com/k0kubun/dotfiles)
