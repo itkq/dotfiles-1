@@ -3,6 +3,7 @@ if which tmux > /dev/null; then
 fi
 #source ~/.zsh/lib/ruby.zsh
 
-alias ls="ls -Gla"
+alias ls="ls -G"
+alias ll="ls -Gla"
 export BUNDLE_JOBS=4
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'

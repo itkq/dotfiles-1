@@ -1,9 +1,6 @@
 # language
 export LANG=ja_JP.UTF-8
 
-# auto cd by dir name
-# setopt auto_cd
-
 # auto pushd
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -24,7 +21,6 @@ export PATH="/opt/local/bin:$PATH"
 export CPATH=/usr/local/opt/openssl/include:$CPATH
 
 setopt no_beep
-setopt auto_cd
 
 # emacs key bind
 bindkey -e

@@ -28,3 +28,5 @@ source ~/.zsh/lib/tmux.zsh
 
 export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+true
