@@ -52,3 +52,13 @@ define :user_service, action: [] do
     end
   end
 end
+
+define :git_clone, source: nil, dest: nil do
+  source = params[:source] || params[:name]
+  dest = params[:dest]
+  execute "git clone" do
+    command "git clone #{source} #{dest}"
+    user node[:user]
+    not_if "test -d #{dest}"
+  end
+end
