@@ -18,3 +18,7 @@ dotfile '.pryrc'
 dotfile '.psqlrc'
 dotfile '.railsrc'
 dotfile '.rake'
+
+dotfile '.config/karabiner/karabiner.json' do
+  source 'karabiner.json'
+end
