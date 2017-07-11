@@ -10,7 +10,6 @@ end
 
 if node[:platform] == 'darwin'
   package 'reattach-to-user-namespace'
-else node[:platform] == 'arch'
+elsif node[:platform] == 'arch'
   package 'xclip'
 end
-
