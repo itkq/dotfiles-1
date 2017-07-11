@@ -1,8 +1,16 @@
 package 'tmux'
-
 dotfile '.tmux.conf'
 dotfile '.tmux.conf.local' do
-  source '.tmux.conf.arch'
+  source ".tmux.conf.#{node[:platform].downcase}"
 end
 
-package 'xclip'
+git_clone 'https://github.com/tmux-plugins/tpm' do
+  dest '~/.tmux/plugins/tpm'
+end
+
+if node[:platform] == 'darwin'
+  package 'reattach-to-user-namespace'
+else node[:platform] == 'arch'
+  package 'xclip'
+end
+
