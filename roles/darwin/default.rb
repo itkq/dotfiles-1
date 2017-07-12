@@ -1,3 +1,7 @@
+node.reverse_merge!(
+  macos_major_version: `sw_vers | grep 'ProductVersion' | awk '{print $2}'`.split(".")[1].to_i
+)
+
 include_role 'base'
 
 include_cookbook 'git'
@@ -19,8 +23,7 @@ dotfile '.psqlrc'
 dotfile '.railsrc'
 dotfile '.rake'
 
-v = `sw_vers | grep 'ProductVersion' | awk '{print $2}'`.split(".")
-if v[1].to_i >= 12 # sierra
+if node[:macos_major_version] >= 12 # sierra
   dotfile '.config/karabiner/karabiner.json' do
     source 'karabiner.json'
   end
