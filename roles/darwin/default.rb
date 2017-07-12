@@ -19,6 +19,9 @@ dotfile '.psqlrc'
 dotfile '.railsrc'
 dotfile '.rake'
 
-dotfile '.config/karabiner/karabiner.json' do
-  source 'karabiner.json'
+v = `sw_vers | grep 'ProductVersion' | awk '{print $2}'`.split(".")
+if v[1].to_i >= 12 # sierra
+  dotfile '.config/karabiner/karabiner.json' do
+    source 'karabiner.json'
+  end
 end
