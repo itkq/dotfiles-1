@@ -3,6 +3,8 @@
   email = kuogsi@gmail.com
 [include]
   path = .gitconfig.local
+[includeIf "gitdir:~/src/ghe.ckpd.co/"]
+  path = ~/.gitconfig_ckpd
 [color]
   ui = true
 [core]
