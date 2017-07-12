@@ -27,6 +27,9 @@ source ~/.zsh/lib/bundle.zsh
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
 [ -f ~/.zshrc.local ]   && source ~/.zshrc.local
 
+# Cookpad
+[ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd
+
 export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 

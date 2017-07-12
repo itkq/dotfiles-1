@@ -1,0 +1,3 @@
+source ~/.cpad2/profile
+
+alias s='envchain aws awssh'
