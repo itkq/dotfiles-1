@@ -1,6 +1,7 @@
 include_role 'base'
 
 include_cookbook 'git'
+include_cookbook 'homebrew'
 include_cookbook 'vim'
 include_cookbook 'zsh'
 include_cookbook 'ghq'
@@ -11,8 +12,6 @@ include_cookbook 'thunderbolt'
 include_cookbook 'go'
 include_cookbook 'tmux'
 include_cookbook 'karabiner'
-
-package 'envchain'
 
 dotfile '.gemrc'
 dotfile '.karabiner'
