@@ -62,3 +62,32 @@ define :git_clone, source: nil, dest: nil do
     not_if "test -d #{dest}"
   end
 end
+
+define :install_dmg, source: nil do
+  source = params[:source] || params[:name]
+  sha1 = `echo #{source} | openssl sha1`.strip
+  filename = "/tmp/#{sha1}.dmg"
+
+  execute "curl -fSL -o #{filename} #{source}" do
+    not_if "test -f #{filename}"
+  end
+
+  target_dir_file = "/tmp/#{sha1}_dir"
+  execute "hdiutil attach #{filename} | awk -F '\t' 'END{print $NF}' > #{target_dir_file}" do
+    user 'root'
+    not_if "test -f #{target_dir_file}"
+  end
+
+  execute "install dmg with pkg" do
+    command "installer -pkg $(cat #{target_dir_file})/$(ls $(cat #{target_dir_file}) | tail -n1) -target /"
+    user 'root'
+    only_if "a=$(ls $(cat #{target_dir_file}) | tail -n1) && [ ${a##*.} = 'pkg' ]"
+    notifies :nothing, "execute[Cleanup]"
+  end
+
+  execute "Cleanup" do
+    command "hdiutil detach $(cat #{target_dir_file}) && rm #{filename} #{target_dir_file}"
+    user 'root'
+  end
+
+end
