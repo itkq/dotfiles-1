@@ -1,8 +1,6 @@
 [user]
   name = Takuya Kosugiyama
   email = kuogsi@gmail.com
-[include]
-  path = .gitconfig.local
 [includeIf "gitdir:~/src/ghe.ckpd.co/"]
   path = ~/.gitconfig_ckpd
 [color]
@@ -38,8 +36,3 @@
 [url "git@gist.github.com:"]
   pushInsteadOf = https://gist.github.com/
   pushInsteadOf = git://gist.github.com/
-[rebuild]
-  repo = itkq/dotfiles
-  scriptdir = script
-  directory = ~/src/github.com/itkq/dotfiles
-  dependency = symlink.sh brew.sh cask.sh ruby.sh karabiner.sh
