@@ -1,7 +1,8 @@
 include_role 'base'
 
-include_cookbook 'git'
+include_cookbook 'xcode'
 include_cookbook 'homebrew'
+include_cookbook 'git'
 include_cookbook 'vim'
 include_cookbook 'zsh'
 include_cookbook 'ghq'
