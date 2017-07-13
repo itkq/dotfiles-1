@@ -15,6 +15,8 @@ include_cookbook 'thunderbolt'
 include_cookbook 'go'
 include_cookbook 'tmux'
 
+package 'envchain'
+
 dotfile '.gemrc'
 dotfile '.karabiner'
 dotfile '.peco'
