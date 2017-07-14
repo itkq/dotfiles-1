@@ -63,6 +63,14 @@ define :git_clone, source: nil, dest: nil do
   end
 end
 
+define :ghq, source: nil, ssh: nil do
+  source = params[:source] || params[:name]
+  execute "ghq get #{source} #{params[:ssh] ? '-p' : ''}" do
+    user node[:user]
+    not_if "ghq list | grep -q #{source}"
+  end
+end
+
 define :install_dmg, source: nil, not_cond: nil do
   source = params[:source] || params[:name]
   sha1 = `echo #{source} | openssl sha1`.strip
