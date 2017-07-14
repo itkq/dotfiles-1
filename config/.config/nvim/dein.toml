@@ -15,31 +15,31 @@ source ~/.config/nvim/plugins/iceberg.rc.vim
 # basic
 # ==========================================================
 
-[[plugins]]
-repo = 'scrooloose/nerdcommenter'
-hook_add = '''
-source ~/.config/nvim/plugins/nerdcomenter.rc.vim
-'''
+# [[plugins]]
+# repo = 'scrooloose/nerdcommenter'
+# hook_add = '''
+# source ~/.config/nvim/plugins/nerdcomenter.rc.vim
+# '''
 
 [[plugins]]
+# Show search result nicely
 repo = 'osyo-manga/vim-anzu'
 hook_add = '''
 source ~/.config/nvim/plugins/anzu.rc.vim
 '''
 
 [[plugins]]
+# Parensis completion
 repo = 'LeafCage/yankround.vim.git'
 hook_add = '''
 source ~/.config/nvim/plugins/yankround.rc.vim
 '''
 
 [[plugins]]
-repo = 'mattn/webapi-vim'
-
-[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
+# Edit binary
 repo = 'Shougo/vinarise.vim'
 on_cmd = 'Vinarise'
 
@@ -48,9 +48,6 @@ repo = 'rhysd/clever-f.vim'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
 repo = 'milkypostman/vim-togglelist'
@@ -75,6 +72,9 @@ hook_add = '''
 nmap <Space>/ <Plug>(operator-search)if
 '''
 
+[[plugins]]
+repo = 'houtsnip/vim-emacscommandline'
+
 # ==========================================================
 # linter
 # ==========================================================
@@ -86,24 +86,6 @@ hook_add = '''
 source ~/.config/nvim/plugins/neomake.rc.vim
 '''
 
-#[[plugins]]
-#repo = 'benjie/neomake-local-eslint.vim'
-#if = "has('nvim')"
-#depends = 'neomake'
-
-[[plugins]]
-repo = 'vim-syntastic/syntastic'
-if = "!has('nvim')"
-hook_add = '''
-source ~/.config/nvim/plugins/syntastic.rc.vim
-'''
-
-#[[plugins]]
-#repo = 'mtscout6/syntastic-local-eslint.vim'
-#if = "!has('nvim')"
-#depends = 'syntastic'
-#on_ft = 'javascript'
-
 # ==========================================================
 # filer
 # ==========================================================
@@ -111,7 +93,7 @@ source ~/.config/nvim/plugins/syntastic.rc.vim
 [[plugins]]
 repo = 'Shougo/unite.vim'
 hook_add = '''
-nnoremap <silent> fb :<C-u>Unite buffer<CR>
+source ~/.config/nvim/plugins/unite.rc.vim
 '''
 
 [[plugins]]
