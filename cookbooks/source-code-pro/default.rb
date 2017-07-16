@@ -1,5 +1,6 @@
 git_clone 'https://github.com/powerline/fonts' do
   dest '/tmp/powerline_fonts'
+  not_cond "ls /Library/Fonts | grep -q 'Source Code Pro'"
 end
 
 execute 'Install source code pro (powerline patched)' do
