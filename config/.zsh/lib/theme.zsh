@@ -16,7 +16,7 @@ precmd() {
   else
     local left2="[$(__current_branch)] "
   fi
-  local right1="$(date +"%-H:%-M") "
+  local right1="$(date +"%H:%M") "
   local right2="$vcs_info_msg_0_"
 
   psvar=()
@@ -30,7 +30,7 @@ precmd() {
     PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v
 %F{green}$%f "
   else
-    PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v%4v
+    PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v
 %F{red}$%f "
   fi
 }
