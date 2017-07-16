@@ -11,8 +11,12 @@ precmd() {
   LANG=en_US.UTF-8 vcs_info
 
   local left1="$(pwd | sed -e "s#$HOME#~#") "
-  local left2=" $(__current_branch) "
-  local right1="[$(date +"%H:%M:%S")]"
+  if [ -z "$(__current_branch)" ]; then
+    local left2=""
+  else
+    local left2="[$(__current_branch)] "
+  fi
+  local right1="$(date +"%-H:%-M") "
   local right2="$vcs_info_msg_0_"
 
   psvar=()
@@ -23,10 +27,10 @@ precmd() {
   psvar[5]="${right2}"
 
   if [[ "x$last_status" == "x0" ]]; then
-    PROMPT="%F{cyan}%1v%f%2v%3v%4v
+    PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v
 %F{green}$%f "
   else
-    PROMPT="%F{cyan}%1v%f%2v%3v%4v
+    PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v%4v
 %F{red}$%f "
   fi
 }
