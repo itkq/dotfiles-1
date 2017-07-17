@@ -1,3 +1,9 @@
+set background=dark
+
+" Override color settings
+hi LineNr ctermfg=240
+hi SignColumn ctermbg=None
+
 " File operation
 set hidden
 set autoread
@@ -24,12 +30,22 @@ set softtabstop=2
 set shiftwidth=2
 set backspace=indent,eol,start
 
+" Command
 set cmdheight=1
 set showcmd
 set showmatch
 
+" Ruler
+set number
+set ruler
+set ignorecase
+
 " No beep
 set vb t_vb=
+
+" Spell check
+" set spell
+" set spelllang=en,cjk
 
 set clipboard+=unnamedplus
 if has('mouse')
@@ -77,3 +93,7 @@ let g:loaded_matchit           = 1
 "
 autocmd MyAutoCmd FileType fortran set colorcolumn=5
 autocmd MyAutoCmd FileType cpp set ts=4 sts=0 sw=4 noet
+
+
+autocmd ColorScheme * highlight LineNr ctermfg=240
+autocmd ColorScheme * highlight SignColumn ctermbg=None

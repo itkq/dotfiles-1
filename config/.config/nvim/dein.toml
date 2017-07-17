@@ -4,22 +4,18 @@ repo = 'Shougo/dein.vim'
 # ==========================================================
 # color
 # ==========================================================
-
 [[plugins]]
-repo = 'cocopon/iceberg.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/iceberg.rc.vim
-'''
+repo = 'tomasr/molokai'
 
 # ==========================================================
 # basic
 # ==========================================================
 
 # [[plugins]]
-# repo = 'scrooloose/nerdcommenter'
-# hook_add = '''
-# source ~/.config/nvim/plugins/nerdcomenter.rc.vim
-# '''
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+source ~/.config/nvim/plugins/nerdcomenter.rc.vim
+'''
 
 [[plugins]]
 # Show search result nicely
@@ -44,10 +40,18 @@ repo = 'Shougo/vinarise.vim'
 on_cmd = 'Vinarise'
 
 [[plugins]]
+# Enhance f/F command in normal mode
 repo = 'rhysd/clever-f.vim'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+hook_add = '''
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+'''
 
 [[plugins]]
 repo = 'milkypostman/vim-togglelist'
@@ -74,6 +78,12 @@ nmap <Space>/ <Plug>(operator-search)if
 
 [[plugins]]
 repo = 'houtsnip/vim-emacscommandline'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'bitc/vim-bad-whitespace'
 
 # ==========================================================
 # linter
@@ -121,13 +131,6 @@ source ~/.config/nvim/plugins/airline.rc.vim
 '''
 
 [[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-depends = 'vim-airline'
-hook_add = '''
-let g:airline_theme='luna'
-'''
-
-[[plugins]]
 repo = 'gcmt/taboo.vim'
 depends = 'vim-airline'
 hook_add = '''
@@ -162,3 +165,33 @@ build = 'make'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
+
+# ==========================================================
+# git
+# ==========================================================
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_override_sign_column_highlight = 1
+highlight clear SignColumn
+"highlight SignColumn ctermbg=None
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# ==========================================================
+# others
+# ==========================================================
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_color_term = 237
+let g:indentLine_color_gui = '#3c444d'
+let g:indentLine_char = '¦'
+'''
+
+[[plugins]]
+repo = 'fuenor/qfixgrep'

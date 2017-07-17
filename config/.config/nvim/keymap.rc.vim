@@ -76,3 +76,4 @@ command! -nargs=1 -complete=file Diff vertical diffsplit <args>
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
+
