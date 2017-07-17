@@ -1,35 +1,48 @@
-set number
-set cursorline
-set ruler
+" File operation
+set hidden
+set autoread
+set nobackup
+set noswapfile
+set encoding=utf-8
+set laststatus=1
+
+" Search
+set incsearch
+set hlsearch " Highlightning target
+set showmode
+
+" Indent
+set autoindent
+set smartindent
+set smarttab
+set expandtab
+set cindent
+
+" Not use tab normally
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set backspace=indent,eol,start
+
+set cmdheight=1
 set showcmd
 set showmatch
-set hlsearch
-set whichwrap=b,s,h,l,<,>,[,],~
-set hidden
-set ts=2 sts=0 sw=2 et
-set smartindent
-set cindent
-set noswapfile
-set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
-set nowrap
-if has('nvim')
-  set clipboard+=unnamedplus
-  if has('mouse')
-    set mouse=
-  endif
-else
-  set laststatus=2
-  set wildmenu
-  set clipboard=unnamed,autoselect
-  set backspace=indent,eol,start
+
+" No beep
+set vb t_vb=
+
+set clipboard+=unnamedplus
+if has('mouse')
+  set mouse=
 endif
-" visual tab
+
 if has('unix')
   autocmd MyAutoCmd ColorScheme * hi SpecialKey ctermfg=darkmagenta ctermbg=none
 else
   autocmd MyAutoCmd ColorScheme * hi SpecialKey ctermfg=darkmagenta
 endif
 set list listchars=tab:¦_
+
 " highlighting zenkaku space
 autocmd MyAutoCmd BufRead,BufNew * match Error /　/
 
