@@ -107,10 +107,6 @@ function mine() {
   echo "added remote mine: ${repo_name}"
 }
 
-# Apply proxy for titech pubnet
-alias titech="git config --global http.proxy 131.112.125.238:3128"
-alias untitech="git config --global --unset http.proxy"
-
 # git-hook
 # export PATH="$HOME/.git-hook/bin:$PATH"
 
@@ -154,11 +150,6 @@ function preq() {
   fi
 }
 
-function private() {
-  git config --local user.email takashikkbn@gmail.com
-  git config --local user.name "Takashi Kokubun"
-}
-
 # ghe get
 function ghe() {
   case $1 in
@@ -197,4 +188,14 @@ function git_setup(){
   git commit -m "first commit"
   git_add_remote_origin
   git push origin master
+}
+
+function gupdate(){
+  local stash_flg=0
+  local change_branch_flg=0
+  [ -z "$(git status --short)" ] && git stash push -u -q && stash_flg=1
+  [ "$(__current_branch)" != "master" ] && git checkout master && change_branch_flg=1
+  git fetch upstream && git merge --ff upstream/master
+  (( $change_branch_flg )) && git checkout -
+  (( $stash_flg )) && git stash pop
 }
