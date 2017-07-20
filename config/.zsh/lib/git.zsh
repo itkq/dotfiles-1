@@ -193,7 +193,7 @@ function git_setup(){
 function gupdate(){
   local stash_flg=0
   local change_branch_flg=0
-  [ -z "$(git status --short)" ] && git stash push -u -q && stash_flg=1
+  [ -z "$(git status --short)" ] || (git stash push -u -q && stash_flg=1)
   [ "$(__current_branch)" != "master" ] && git checkout master && change_branch_flg=1
   git fetch upstream && git merge --ff upstream/master
   (( $change_branch_flg )) && git checkout -
