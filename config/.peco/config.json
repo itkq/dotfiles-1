@@ -2,11 +2,10 @@
   "Prompt": "[peco]",
   "Keymap": {
     "C-c": "peco.Cancel",
-    "C-d": "peco.EndOfFile",
-    "C-v": "peco.ToggleSelectMode",
+    "C-u": "peco.ScrollPageUp",
+    "C-d": "peco.ScrollPageDown",
+    "C-v": "peco.ToggleSelectionAndSelectNext",
     "M-d": "peco.DeleteForwardWord",
-    "C-i,C-f": "peco.SelectNextPage",
-    "C-i,C-b": "peco.SelectPreviousPage",
     "ArrowLeft": "peco.ScrollLeft",
     "ArrowRight": "peco.ScrollRight"
   },
