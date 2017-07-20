@@ -1,3 +1,5 @@
 source ~/.cpad2/profile
 
+export AWSSH_CSSH=$HOME/bin/tmux-nested-cssh
 alias s='envchain aws awssh'
+
