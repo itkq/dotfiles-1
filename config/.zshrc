@@ -31,7 +31,9 @@ source ~/.zsh/lib/bundle.zsh
 [ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd
 
 # Titech
-[ -f ~/.zshrc.titech ] && source ~/.zshrc.titech
+expired_titech=$(date -j -f "%Y-%m-%d %H:%M:%S" "2018-03-31 23:59:59" "+%s")
+([ -f ~/.zshrc.titech ] && (( $(date +%s) < $expired_titech )) ) && source ~/.zshrc.titech
+unset expired_titech
 
 export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
