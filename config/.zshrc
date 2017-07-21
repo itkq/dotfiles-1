@@ -30,6 +30,9 @@ source ~/.zsh/lib/bundle.zsh
 # Cookpad
 [ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd
 
+# Titech
+[ -f ~/.zshrc.titech ] && source ~/.zshrc.titech
+
 export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 

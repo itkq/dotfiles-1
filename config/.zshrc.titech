@@ -1,0 +1,1 @@
+which titech_auto_login >/dev/null && alias tit='envchain titech titech_auto_login'

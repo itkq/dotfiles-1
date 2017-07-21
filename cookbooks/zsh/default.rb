@@ -17,6 +17,8 @@ if node[:is_working]
   dotfile '.zshrc.ckpd'
 end
 
+dotfile '.zshrc.titech'
+
 execute "chsh -s /bin/zsh #{node[:user]}" do
   only_if "getent passwd #{node[:user]} | cut -d: -f7 | grep -q '^/bin/bash$'"
   user 'root'
