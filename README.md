@@ -1,6 +1,4 @@
-# world
-
-Make my world
+# config
 
 ## Usage
 
