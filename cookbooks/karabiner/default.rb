@@ -7,11 +7,11 @@ if node[:macos_major_version] >= 12 # sierra
     not_cond "[ -e /Applications/Karabiner-Elements.app ]"
   end
 
-  directory "#{ENV['HOME']}/.config/karabiner" do
-    owner node[:user]
+  execute 'brew tap jlhonora/lsusb' do
+    not_if 'brew tap | grep jlhonora/lsusb'
   end
 
-  dotfile '.config/karabiner/karabiner.json' do
-    source 'karabiner.json'
-  end
+  package 'jlhonora/lsusb/lsusb'
+
+  dotfile ".config/karabiner"
 end

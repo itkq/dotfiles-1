@@ -255,26 +255,6 @@
                 ]
             },
             "devices": [
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 601,
-                        "vendor_id": 1452
-                    },
-                    "ignore": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 49734,
-                        "vendor_id": 1133
-                    },
-                    "ignore": true
-                }
             ],
             "fn_function_keys": {
                 "f1": "display_brightness_decrement",
@@ -290,7 +270,7 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "Default profile",
+            "name": "Default",
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "left_control"
