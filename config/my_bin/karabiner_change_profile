@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+keyboard_config = {
+  "Realforce 87" => "realforce.json"
+}
+
+def change_profile from
+  base = Pathname.new("#{ENV['HOME']}/.config/karabiner/")
+  `ln -sf #{base.join(from)} #{base.join('karabiner.json')}`
+  puts "Change to: #{from}"
+end
+
+`type system_profiler`
+if $?.exitstatus != 0
+  puts 'You should install lsusb'
+  exit 1
+end
+
+keyboard_config.each do |k,v|
+  `system_profiler SPUSBDataType | grep -q '#{k}'`
+  if $?.exitstatus == 0
+    change_profile(v)
+    exit 0
+  end
+end
+
+change_profile('default.json')

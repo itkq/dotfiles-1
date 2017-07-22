@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "erb"
+
+OUTPUT_FILE = "output.tex"
+TEMPLATE = "./main.tex.erb"
+
+filename = ARGV[0]
+body = File.read(filename)
+
+erb = ERB.new(File.read(TEMPLATE))
+File.write(OUTPUT_FILE, erb.result(binding))
+system("latexmk #{OUTPUT_FILE}")

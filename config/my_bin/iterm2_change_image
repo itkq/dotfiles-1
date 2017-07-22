@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+IMAGE_DIR = ENV['ITERM_BG_IMAGES'] || "#{ENV['HOME']}/iterm/img"
+
+terminal_app = `osascript <<EOF
+tell application "System Events"
+    set a to name of (path to frontmost application)
+end tell
+EOF`
+exit unless terminal_app.match(/iTerm/)
+
+width, height = `osascript <<EOF
+tell application "System Events" to get properties of first window of process "iTerm2"
+EOF`.match(/size:(\d+),\s+(\d+)/)[1..2].map(&:to_i)
+
+target_resolution = {
+  'WUXGA'  => [1920, 1200],
+  'WQHD'   => [2560, 1440],
+  'FULLHD' => [1920, 1080],
+}
+
+# exit unless target_resolution.values.include?([width, height])
+
+image_path = Dir.glob(Pathname.new(IMAGE_DIR).join('*')).sample
+`osascript <<EOF
+tell application "iTerm"
+	tell current session of current window
+		set background image to "#{image_path}"
+	end tell
+end tell
+EOF`

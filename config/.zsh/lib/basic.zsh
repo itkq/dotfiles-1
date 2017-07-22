@@ -15,6 +15,7 @@ export SAVEHIST=60000000
 setopt ignore_eof
 
 export PATH="/opt/local/bin:$PATH"
+[ -d $HOME/my_bin ] && export PATH="$HOME/my_bin:$PATH"
 # export EDITOR="vim"
 
 # El Capitan

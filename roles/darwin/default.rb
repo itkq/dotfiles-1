@@ -14,8 +14,8 @@ include_cookbook 'thunderbolt'
 include_cookbook 'go'
 include_cookbook 'tmux'
 include_cookbook 'karabiner'
-
 include_cookbook 'source-code-pro'
+include_cookbook 'bin'
 
 dotfile '.gemrc'
 dotfile '.karabiner'
