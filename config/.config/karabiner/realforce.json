@@ -277,7 +277,8 @@
                 "left_command": "left_option",
                 "left_option": "left_command",
                 "right_command": "right_option",
-                "right_option": "right_command"
+                "right_option": "right_command",
+                "right_shift": "escape"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,

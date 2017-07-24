@@ -273,7 +273,8 @@
             "name": "Default",
             "selected": true,
             "simple_modifications": {
-                "caps_lock": "left_control"
+                "caps_lock": "left_control",
+                "right_shift": "escape"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
