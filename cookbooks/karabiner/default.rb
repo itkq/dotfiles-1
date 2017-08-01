@@ -7,11 +7,12 @@ if node[:macos_major_version] >= 12 # sierra
     not_cond "[ -e /Applications/Karabiner-Elements.app ]"
   end
 
-  execute 'brew tap jlhonora/lsusb' do
-    not_if 'brew tap | grep jlhonora/lsusb'
+  file "#{ENV['HOME']}/.config/karabiner/karabiner.json" do
+    yaml_path = File.expand_path('../../../config/karabiner.yml', __FILE__)
+    yaml = ERB.new(File.read(yaml_path)).result
+
+    content YAML.load(yaml).to_json
   end
 
-  package 'jlhonora/lsusb/lsusb'
-
-  dotfile ".config/karabiner"
+  # dotfile ".config/karabiner"
 end
