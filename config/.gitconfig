@@ -1,8 +1,11 @@
 [user]
-  name = Takuya Kosugiyama
+  name = itkq
   email = kuogsi@gmail.com
+	signingkey = BBDC3D0A1BE808A0
 [includeIf "gitdir:~/src/ghe.ckpd.co/"]
   path = ~/.gitconfig_ckpd
+[includeIf "gitdir:~/src/gitlab.net.ict.e.titech.ac.jp/"]
+  path = ~/.gitconfig_lab
 [color]
   ui = true
 [core]
@@ -36,3 +39,7 @@
 [url "git@gist.github.com:"]
   pushInsteadOf = https://gist.github.com/
   pushInsteadOf = git://gist.github.com/
+[gpg]
+	program = gpg2
+[commit]
+	gpgsign = false
