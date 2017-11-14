@@ -1,0 +1,29 @@
+#!/bin/bash
+set_color() {
+  local hex_fg=$1
+  local hex_bg=$2
+  local transparency=$3
+
+  local fg_r=`echo $hex_fg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$1 * 257)}'`
+  local fg_g=`echo $hex_fg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$2 * 257)}'`
+  local fg_b=`echo $hex_fg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$3 * 257)}'`
+  local bg_r=`echo $hex_bg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$1 * 257)}'`
+  local bg_g=`echo $hex_bg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$2 * 257)}'`
+  local bg_b=`echo $hex_bg | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$3 * 257)}'`
+
+/usr/bin/osascript <<EOF
+tell application "iTerm"
+  tell current session of first window
+    set foreground color to {$fg_r, $fg_g, $fg_b}
+    set background color to {$bg_r, $bg_g, $bg_b}
+    set transparency to "$transparency"
+  end tell
+end tell
+EOF
+}
+
+set_color ffffff 220000 0.3
+
+ssh $@
+
+set_color ffffff 000000 0.3 # default termnal color
