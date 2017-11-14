@@ -7,12 +7,12 @@ if node[:macos_major_version] >= 12 # sierra
     not_cond "[ -e /Applications/Karabiner-Elements.app ]"
   end
 
-  file "#{ENV['HOME']}/.config/karabiner/karabiner.json" do
-    yaml_path = File.expand_path('../../../config/karabiner.yml', __FILE__)
-    yaml = ERB.new(File.read(yaml_path)).result
+  # file "#{ENV['HOME']}/.config/karabiner/karabiner.json" do
+  #  yaml_path = File.expand_path('../../../config/karabiner.yml', __FILE__)
+  #  yaml = ERB.new(File.read(yaml_path)).result
+  #
+  #  content YAML.load(yaml).to_json
+  # end
 
-    content YAML.load(yaml).to_json
-  end
-
-  # dotfile ".config/karabiner"
+  dotfile ".config/karabiner"
 end
