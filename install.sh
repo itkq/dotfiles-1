@@ -11,6 +11,6 @@ bin/setup
 case "$(uname)" in
   "Darwin")
     ! which brew >/dev/null && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    bin/mitamae local lib/recipe.rb ;;
-  *) sudo -E bin/mitamae local lib/recipe.rb ;;
+    bin/mitamae local $@ lib/recipe.rb ;;
+  *) sudo -E bin/mitamae local $@ lib/recipe.rb ;;
 esac
