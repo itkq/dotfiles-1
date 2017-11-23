@@ -312,33 +312,25 @@ endfunction
   nnoremap <silent>gB :Gbrowse<CR>
   nnoremap <silent>gco :Gcommit<CR>
 " }}}
-"
-" Quickrun
+
 let g:quickrun_config = {
-\   "_" : {
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 40,
+\   '_' : {
+\       'runner' : 'vimproc',
+\       'runner/vimproc/updatetime' : 40,
 \       'outputter' : 'error',
 \   }
 \}
-" let g:quickrun_config["latexmk"] = {
-"             \ 'command'   : 'latexmk',
-"             \ 'outputter/error/error' : 'quickfix',
-"             \ 'exec'      : '%c',
+" let g:quickrun_config["gobuild"] = {
+"             \ 'command'   : 'go',
+"             \ 'cmdopt'    : '-o /dev/null ./...',
+"             \ 'exec'      : '%c build %o',
+"             \ 'errorformat': '%f:%l: %m,%-G%.%#',
+"             \ 'outputter/error/success' : 'buffer',
+"             \ 'outputter/error/error'   : 'quickfix',
+"             \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+"             \ 'outputter/buffer/close_on_empty' : 1,
 "             \ }
-" autocmd BufWritePost *.tex :QuickRun latexmk
-
-let g:quickrun_config["gobuild"] = {
-            \ 'command'   : 'go',
-            \ 'cmdopt'    : '-o /dev/null ./...',
-            \ 'exec'      : '%c build %o',
-            \ 'errorformat': '%f:%l: %m,%-G%.%#',
-            \ 'outputter/error/success' : 'buffer',
-            \ 'outputter/error/error'   : 'quickfix',
-            \ 'outputter/buffer/split'  : ':rightbelow 8sp',
-            \ 'outputter/buffer/close_on_empty' : 1,
-            \ }
-autocmd BufWritePost *.go :QuickRun gobuild
+" autocmd BufWritePost *.go :QuickRun gobuild
 
 
 " for golang {{{
@@ -397,22 +389,6 @@ call unite#custom_action('file', 'my_vsplit', my_action)
   endfunction
   let g:extra_whitespace_ignored_filetypes = ['unite']
 " }}}
-
-" filetype plugin on
-" let tex_flavor = 'latex'
-" set grepprg=grep\ -nH\ $*
-" set shellslash
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_CompileRule_pdf= 'docker run --rm -v $(pwd):/var/texlive texlive2015 latexmk'
-let g:Tex_ViewRule_pdf = 'open -ga /Applications/Skim.app'
-let g:tex_conceal=''
-" let g:Tex_FormatDependency_pdf = 'dvi,pdf'
-
-" vim-auto-save {{{
-  " let g:auto_save = 1
-  " let g:auto_save_in_insert_mode = 0
-" }}}
-
 
 " Watchdog
 " 書き込み後にシンタックスチェックを行う

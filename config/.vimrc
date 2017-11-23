@@ -6,6 +6,7 @@ source ~/.vim/syntax.vim
 
 source ~/.vim/skin.vim
 source ~/.vim/plugin.vim
+source ~/.vim/latex.vim
 source ~/.vim/bind.vim
 source ~/.vim/unite.vim
 

@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+CONFIG_PATH = './.config/latexmk.yml'
+LATEXMK_PATH = '/Users/itkq/my_bin/latexmk'
+
+def remove_tex_ext(filename)
+  File.basename(filename, ".tex")
+end
+
+unless File.exist?(CONFIG_PATH)
+  `#{LATEXMK_PATH} #{ARGV.join(" ")}`
+  exit $?
+end
+
+yaml = YAML.load_file(CONFIG_PATH)
+output_file = yaml["output_file"] || "./output.tex"
+header = yaml["header"] || "./header.tex"
+include_files = yaml["include_files"]
+
+input_file = File.basename(ARGV[0])
+exit 0 if input_file == header
+
+includes = if include_files.include?(input_file)
+             "\\input{#{remove_tex_ext(input_file)}}"
+           else
+             include_files.map{|f| "\\input{#{remove_tex_ext(f)}}"}.join("\n")
+           end
+
+body = <<EOF
+\\begin{document}
+#{includes}
+\\end{document}
+EOF
+
+output = File.read(header) + body
+File.write(output_file, output)
+
+`#{LATEXMK_PATH} #{output_file} && #{LATEXMK_PATH} -c`
