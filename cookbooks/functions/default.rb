@@ -11,29 +11,36 @@ define :dotfile, source: nil do
   end
 end
 
-define :github_binary, version: nil, repository: nil, archive: nil, binary_path: nil do
-  cmd = params[:name]
-  bin_path = "#{ENV['HOME']}/bin/#{cmd}"
-  archive = params[:archive]
-  url = "https://github.com/#{params[:repository]}/releases/download/#{params[:version]}/#{archive}"
+define :github_binary, repository: nil, binary_path: "#{ENV['HOME']}/bin" do
+  repository = params[:name] || params[:repository]
+  cmd = repository.split('/')[-1]
 
-  if archive.end_with?('.zip')
-    extract = "unzip -o"
-  elsif archive.end_with?('.tar.gz')
-    extract = "tar xvzf"
-  else
-    raise "unexpected ext archive: #{archive}"
-  end
+  execute "Download binary from #{repository}" do
+    not_if "test -e #{params[:binary_path].sub(/\/$/, '')}/#{cmd}"
+    command <<EOF
+set -eu
 
-  execute "curl -fSL -o /tmp/#{archive} #{url}" do
-    not_if "test -f #{bin_path}"
-  end
-  execute "#{extract} /tmp/#{archive}" do
-    not_if "test -f #{bin_path}"
-    cwd "/tmp"
-  end
-  execute "mv /tmp/#{params[:binary_path] || cmd} #{bin_path} && chmod +x #{path}" do
-    not_if "test -f #{bin_path}"
+repos=#{repository}
+bin_path=#{params[:binary_path]}
+os=#{node[:os]}
+
+cmd=#{cmd}
+release_url=$(curl -sSL https://api.github.com/repos/$repos/releases/latest \
+  | grep browser_download_url | grep -i $os | grep -i amd64 | awk -F'"' '{print $4}')
+tmp_path=/tmp/$(basename $release_url)
+
+curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -d' ' -f2) in
+  "application/zip")
+    unzip -o $tmp_path -d $(echo $tmp_path | sed 's/\.[^\.]*$//') \
+      && mv $(echo $tmp_path | sed 's/\.[^\.]*$//')/$cmd "${bin_path%/}/$cmd" \
+      && chmod u+x "${bin_path%/}/$cmd"
+    ;;
+  "application/x-mach-binary")
+    mv $tmp_path "${bin_path%/}/$cmd" \
+      && chmod u+x "${bin_path%/}/$cmd"
+    ;;
+esac
+EOF
   end
 end
 
