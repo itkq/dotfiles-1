@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+if ARGV.size < 2
+  puts 'Usage: omikuji [args...]'
+  exit
+end
+
+ARGV.shuffle.each_with_index do |a,i|
+  puts "%2d: %s" % ([i+1, a])
+end
