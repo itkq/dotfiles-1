@@ -1,3 +1,5 @@
 [user]
   name = Takuya Kosugiyama
   email = takuya-kosugiyama@cookpad.com
+[hub]
+	host = ghe.ckpd.co
