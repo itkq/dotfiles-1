@@ -24,6 +24,3 @@ function mkcd() {
   mkdir $1
   cd $1
 }
-
-alias ssh='iterm-ssh-background'
-compdef _ssh iterm-ssh-background=ssh
