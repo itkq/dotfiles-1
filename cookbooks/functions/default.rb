@@ -35,7 +35,7 @@ curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -
       && mv $(echo $tmp_path | sed 's/\.[^\.]*$//')/$cmd "${bin_path%/}/$cmd" \
       && chmod u+x "${bin_path%/}/$cmd"
     ;;
-  "application/x-mach-binary")
+  "application/x-mach-binary" | "application/octet-stream")
     mv $tmp_path "${bin_path%/}/$cmd" \
       && chmod u+x "${bin_path%/}/$cmd"
     ;;
