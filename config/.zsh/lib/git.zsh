@@ -1,6 +1,6 @@
 # Configuration for git
-alias gci="git commit"
-alias gcim="git commit -m"
+alias gci="git commit -S"
+alias gcim="git commit -S -m"
 alias gm="git merge"
 alias gst="git status"
 alias gco="git checkout"
