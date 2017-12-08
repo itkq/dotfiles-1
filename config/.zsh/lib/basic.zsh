@@ -25,3 +25,7 @@ setopt no_beep
 
 # emacs key bind
 bindkey -e
+
+# direnv
+export EDITOR=vim
+eval "$(direnv hook zsh)"
