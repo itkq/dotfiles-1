@@ -9,8 +9,6 @@ function vi() {
   vim ${=*/:/ +}
 }
 
-which nvim >/dev/null && alias vim='nvim'
-
 # Prefer brew's vim
 export PATH="/opt/brew/bin:/usr/local/bin:${PATH}"
 
