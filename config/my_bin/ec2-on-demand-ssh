@@ -1,0 +1,109 @@
+#!/usr/bin/env ruby
+
+require 'aws-sdk'
+
+SUBNET_ID = ENV.fetch('DEFAULT_SUBNET_ID')
+AMI_ID = ENV.fetch('DEFAULT_AMI_ID')
+KEY_NAME = ENV.fetch('DEFAULT_KEY_NAME')
+
+def logger
+  @logger ||= Logger.new($stdout)
+end
+
+def ec2
+  @ec2 ||= Aws::EC2::Client.new
+end
+
+def init
+  Aws.config.update(logger: logger)
+end
+
+def run_instance
+  ec2.run_instances(
+    dry_run: false,
+    image_id: AMI_ID,
+    max_count: 1,
+    min_count: 1,
+    instance_type: 't2.micro',
+    key_name: KEY_NAME,
+    block_device_mappings: [
+      {
+        device_name: "/dev/xvda",
+        ebs: {
+          volume_size: 8,
+          delete_on_termination: true,
+          volume_type: "gp2"
+        }
+      },
+    ],
+    monitoring: {
+      enabled: false,
+    },
+    disable_api_termination: false,
+    network_interfaces: [
+      {
+        device_index: 0,
+        subnet_id: SUBNET_ID,
+        delete_on_termination: true,
+        associate_public_ip_address: true
+      },
+    ],
+  ).instances.first
+end
+
+def start_instance_by_id(instance_id)
+  resp = ec2.start_instances(
+    instance_ids: [ instance_id ],
+    dry_run: false,
+  )
+
+  get_instance_by_id(instance_id)
+end
+
+def get_instance_candidate
+  ec2.describe_instances(
+    filters: [
+      { name: 'instance-type', values: [ 't2.micro' ] },
+      { name: 'instance-state-name', values: [ 'running', 'stopped' ] },
+    ],
+  ).reservations.first.instances.first
+end
+
+def get_instance_by_id(instance_id)
+  ec2.describe_instances(
+    instance_ids: [ instance_id ]
+  ).reservations.first.instances.first
+end
+
+def stop_instance_by_id(instance_id)
+  ec2.stop_instances(
+    instance_ids: [ instance_id ]
+  )
+end
+
+def exec_ssh(host)
+  pid = fork do
+    exec "ssh #{host}"
+  end
+
+  exitpid, status = *Process.waitpid2(pid)
+end
+
+
+init
+
+instance = if (candidate = get_instance_candidate)
+             if candidate.state.name == "stopped"
+               start_instance_by_id(candidate.instance_id)
+             else
+               get_instance_by_id(candidate.instance_id)
+             end
+           else
+             run_instance
+           end
+
+logger.info instance
+
+exec_ssh(instance.public_dns_name)
+
+stop_instance_by_id(instance.instance_id)
