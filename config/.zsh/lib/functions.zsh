@@ -177,3 +177,16 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 function intra-ip() {
   ipconfig getifaddr $(route get default|grep 'interface:'|awk '{print $2}')
 }
+
+function wifi() {
+  if [ $# -ne 1 ]; then
+    echo 'usage: wifi (on|off|reboot)'
+    return 1
+  fi
+
+  case $1 in
+    on) networksetup -setairportpower en0 on ;;
+    off) networksetup -setairportpower en0 off ;;
+    reboot) networksetup -setairportpower en0 off && networksetup -setairportpower en0 on ;;
+  esac
+}
