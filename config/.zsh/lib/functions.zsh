@@ -173,3 +173,7 @@ function extract() {
   esac
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+
+function intra-ip() {
+  ipconfig getifaddr $(route get default|grep 'interface:'|awk '{print $2}')
+}
