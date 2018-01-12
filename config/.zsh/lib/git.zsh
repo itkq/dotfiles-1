@@ -10,8 +10,8 @@ alias gaa="ga -A"
 alias gf="git fetch"
 alias gd="git diff --word-diff=color"
 alias gignore="git rm -r --cached .; git add ."
-alias gca="git commit --amend"
-alias gcan="git commit --amend --no-edit"
+alias gca="git commit -S --amend"
+alias gcan="git commit -S --amend --no-edit"
 alias gcop='git status | grep modified | awk "{print \$2}" | peco | xargs git checkout'
 alias git_delete_local_branch='git branch --merged | grep -v "*" | grep -v master | grep -v for_tracking | xargs git branch -d'
 alias git_delete_remote_branch="git branch -a --merged | grep -v master | grep remotes/origin| sed -e 's% *remotes/origin/%%' | xargs -I% git push origin :%"
