@@ -23,7 +23,7 @@ autocmd BufNewFile,BufRead *.conf setl filetype=conf
 autocmd BufNewFile,BufRead *.pp setl filetype=puppet
 autocmd BufNewFile,BufRead xmobarrc setl filetype=haskell
 autocmd BufNewFile,BufRead *.ex setl filetype=elixir
-autocmd BufNewFile,BufRead *.c setl filetype=cpp
+autocmd BufNewFile,BufRead *.c setl filetype=c tabstop=4 shiftwidth=4 noexpandtab
 autocmd BufNewFile,BufRead *.scpt.erb set filetype=applescript
 autocmd BufNewFile,BufRead .md2key set filetype=yaml
 autocmd BufNewFile,BufRead *.al set filetype=ruby
