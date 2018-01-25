@@ -23,4 +23,4 @@ function mkcd() {
   cd $1
 }
 
-which pget && alias wget=pget
+which pget > /dev/null && alias wget=pget
