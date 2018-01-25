@@ -18,7 +18,7 @@ define :github_binary, repository: nil, binary_path: "#{ENV['HOME']}/bin" do
   execute "Download binary from #{repository}" do
     not_if "test -e #{params[:binary_path].sub(/\/$/, '')}/#{cmd}"
     command <<EOF
-set -eu
+set -Cue
 
 repos=#{repository}
 bin_path=#{params[:binary_path]}
@@ -31,9 +31,14 @@ tmp_path=/tmp/$(basename $release_url)
 
 curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -d' ' -f2) in
   "application/zip")
-    unzip -o $tmp_path -d $(echo $tmp_path | sed 's/\.[^\.]*$//') \
-      && mv $(echo $tmp_path | sed 's/\.[^\.]*$//')/$cmd "${bin_path%/}/$cmd" \
-      && chmod u+x "${bin_path%/}/$cmd"
+    dst=$(echo $tmp_path | sed 's/\.[^\.]*$//')
+    unzip -o $tmp_path -d $dst
+    if [ -d $dst ]; then
+      tmp_path="$(find $dst -name "$cmd" | head -n 1)"
+    else
+      tmp_path="$(echo $tmp_path | sed 's/\.[^\.]*$//')/$cmd"
+    fi
+    mv $tmp_path "${bin_path%/}/$cmd" && chmod u+x "${bin_path%/}/$cmd"
     ;;
   "application/x-gzip")
     cd /tmp && tar xzf $tmp_path && chmod +x $cmd && mv $cmd "${bin_path%/}/$cmd"
