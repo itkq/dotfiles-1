@@ -198,4 +198,5 @@ function gupdate(){
   git fetch upstream && git merge --ff upstream/master
   (( $change_branch_flg )) && git checkout -
   (( $stash_flg )) && git stash pop
+  true
 }
