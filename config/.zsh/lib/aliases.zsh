@@ -22,3 +22,5 @@ function mkcd() {
   mkdir $1
   cd $1
 }
+
+which pget && alias wget=pget
