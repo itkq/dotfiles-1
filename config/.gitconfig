@@ -31,6 +31,7 @@
 	autosetuprebase = always
 [pull]
   rebase = true
+[rebase]
   autostash = true
 [ghq]
   root = ~/src
