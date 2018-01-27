@@ -31,6 +31,7 @@
 	autosetuprebase = always
 [pull]
   rebase = true
+  autostash = true
 [ghq]
   root = ~/src
 [url "git@github.com:"]
