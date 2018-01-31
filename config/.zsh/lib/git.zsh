@@ -200,3 +200,10 @@ function gupdate(){
   (( $stash_flg )) && git stash pop
   true
 }
+
+function propen() {
+  local current_branch_name=$(git symbolic-ref --short HEAD | xargs perl -MURI::Escape -e 'print uri_escape($ARGV[0]);')
+  local remote=$(git branch -vv | grep '^*' | awk '{ print $4 }' | cut -d/ -f1 | sed -e 's/^\[//')
+  local repo_url=$(git remote show -n $remote | grep 'Push  URL' | grep -E -o '[^ ]+$' | sed -e 's|^https://||' -e 's/^git@//' -e 's/\.git$//' -e 's|:|/|')
+  open "https://${repo_url}/pull/${current_branch_name}"
+}
