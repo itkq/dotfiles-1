@@ -1,3 +1,6 @@
+set re=1
+setf text
+
 " Syntax highlights for custom extensions
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd BufNewFile,BufRead Gemfile.shared set filetype=ruby

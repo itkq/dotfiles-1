@@ -23,7 +23,7 @@ function! s:vimrc_local(loc)
 endfunction
 
 " .vimrc.local template
-" augroup cruby
-"   autocmd!
-"   autocmd BufWinEnter,BufNewFile **/*.[chy] setlocal filetype=cruby
-" augroup END
+augroup cruby
+  autocmd!
+  autocmd BufWinEnter,BufNewFile **/*.[chy] setlocal filetype=cruby
+augroup END
