@@ -44,6 +44,6 @@
 [gpg]
 	program = gpg
 [commit]
-	gpgsign = false
+	gpgsign = true
 [grep]
 	lineNumber = true
