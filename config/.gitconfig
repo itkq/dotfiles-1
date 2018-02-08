@@ -47,3 +47,5 @@
 	gpgsign = true
 [grep]
 	lineNumber = true
+[fetch]
+  prune = true
