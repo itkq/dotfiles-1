@@ -60,7 +60,12 @@ function gp() {
       git push $@ `current-branch`
     fi
   else
-    git push
+    if git remote show origin | grep -q `current-branch`; then
+      git push
+    else
+      echo "\e[33mSet upstream `current-branch`\e[m"
+      git push --set-upstream origin `current-branch`
+    fi
   fi
 }
 function gpf() {
