@@ -69,6 +69,17 @@ repo = 'uplus/deoplete-solargraph'
 depends = 'deoplete.nvim'
 on_ft = ['ruby']
 
+[[plugins]]
+repo = 'zchee/deoplete-go'
+depends = 'deoplete.nvim'
+on_ft = 'go'
+build = 'make'
+hook_source = '''
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+'''
 
 # ==========================================================
 # denite
@@ -83,10 +94,9 @@ depends = ['neomru.vim']
 on_event = 'BufRead'
 hook_add = '''
 nnoremap <silent> ,r :<C-u>Denite -buffer-name=mru -highlight-mode-insert=Search file_mru<CR>
-nnoremap <silent> ,b :<C-u>DeniteBufferDir -buffer-name=buffer -auto-preview file_rec<CR>
-nnoremap <silent> ,f :<C-u>DeniteProjectDir -buffer-name=files -auto-preview file_rec<CR>
-nnoremap <silent> ,l :<C-u>Denite outline<CR>
-nnoremap <silent> ,g :<C-u>DeniteCursorWord -buffer-name=gtags_context gtags_context<CR>
+nnoremap <silent> ,b :<C-u>DeniteBufferDir -highlight-mode-insert=Search -buffer-name=buffer -auto-preview file_rec<CR>
+nnoremap <silent> ,f :<C-u>DeniteProjectDir -highlight-mode-insert=Search -buffer-name=files -auto-preview file_rec<CR>
+nnoremap <silent> ,l :<C-u>Denite -highlight-mode-insert=Search outline<CR>
 '''
 hook_post_source = '''
 call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
@@ -118,16 +128,11 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
-depends = 'deoplete.nvim'
-on_ft = 'go'
-build = 'make'
-hook_source = '''
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#use_cache = 1
-let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+repo = 'ozelentok/denite-gtags'
+hook_add = '''
+nnoremap ,d :DeniteCursorWord -buffer-name=gtags_def gtags_def<cr>
 '''
+
 
 # [[plugins]]
 # repo = 'ujihisa/neco-look'

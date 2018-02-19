@@ -81,19 +81,19 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
 '''
 
-[[plugins]]
-# Parensis completion
-repo = 'LeafCage/yankround.vim.git'
-hook_add = '''
-nmap p <Plug>(yankround-p)
-xmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-xmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-'''
+# [[plugins]]
+# # Parensis completion
+# repo = 'LeafCage/yankround.vim.git'
+# hook_add = '''
+# nmap p <Plug>(yankround-p)
+# xmap p <Plug>(yankround-p)
+# nmap P <Plug>(yankround-P)
+# nmap gp <Plug>(yankround-gp)
+# xmap gp <Plug>(yankround-gp)
+# nmap gP <Plug>(yankround-gP)
+# nmap <C-p> <Plug>(yankround-prev)
+# nmap <C-n> <Plug>(yankround-next)
+# '''
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -266,6 +266,29 @@ hi GitGutterChangeDelete ctermfg=yellow
 repo = 'tpope/vim-fugitive'
 
 # ==========================================================
+# gtags
+# ==========================================================
+
+[[plugins]]
+repo = 'lighttiger2505/gtags.vim'
+hook_add = '''
+let g:Gtags_Auto_Map = 1
+let g:Gtags_OpenQuickfixWindow = 1
+nnoremap <C-g> :Gtags
+nnoremap <C-h> :Gtags -f %<CR>
+nnoremap <C-j> :GtagsCursor<CR>
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+'''
+
+[[plugins]]
+repo = 'zebult/auto-gtags.vim'
+hook_add = '''
+let g:auto_update_gtags = 1
+'''
+
+
+# ==========================================================
 # others
 # ==========================================================
 
@@ -295,3 +318,4 @@ hook_add = '''
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 '''
+
