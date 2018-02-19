@@ -44,3 +44,5 @@ nmap <Down> <C-w>j
 nmap <Up> <C-w>k
 nmap <Left> <C-w>h
 nmap <Right> <C-w>l
+
+nnoremap tig :<C-u>w<CR>:te tig<CR>
