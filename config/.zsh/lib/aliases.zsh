@@ -15,8 +15,7 @@ export PATH="/opt/brew/bin:/usr/local/bin:${PATH}"
 # cd by dir name only for ..
 alias ..="cd .."
 
-# Short hand for karabiner gem
-alias dsl='karabiner dsl'
+which nvim > /dev/null && alias vim=nvim
 
 function mkcd() {
   mkdir $1

@@ -1,28 +1,47 @@
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
+
+# ==========================================================
+# deoplete
+# ==========================================================
+
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
-if = "has('nvim')"
 on_i = 1
 hook_source = '''
-source ~/.config/nvim/plugins/deoplete.rc.vim
-'''
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-depends = 'context_filetype.vim'
-if = "has('lua')"
-on_i = 1
-hook_source = '''
-source ~/.config/nvim/plugins/neocomplete.rc.vim
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" <BS>: close popup and delete backword char.
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+" Use auto delimiter
+call deoplete#custom#set('_', 'converters', [
+      \ 'converter_remove_paren',
+      \ 'converter_remove_overlap',
+      \ 'converter_truncate_abbr',
+      \ 'converter_truncate_menu',
+      \ 'converter_auto_delimiter',
+\ ])
+
+let g:deoplete#enable_camel_case = 1
 '''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 depends = 'deoplete.nvim'
-if = "has('nvim')"
 on_ft = 'python'
 hook_source = '''
 if has('unix')
@@ -36,9 +55,71 @@ endif
 '''
 
 [[plugins]]
+repo = 'zchee/deoplete-clang'
+depends = 'deoplete.nvim'
+on_ft = ['c', 'cc', 'cpp']
+hook_add = '''
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+'''
+
+[[plugins]]
+repo = 'uplus/deoplete-solargraph'
+# repo = 'osyo-manga/vim-monster'
+depends = 'deoplete.nvim'
+on_ft = ['ruby']
+
+
+# ==========================================================
+# denite
+# ==========================================================
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['neomru.vim']
+on_event = 'BufRead'
+hook_add = '''
+nnoremap <silent> ,r :<C-u>Denite -buffer-name=mru -highlight-mode-insert=Search file_mru<CR>
+nnoremap <silent> ,b :<C-u>DeniteBufferDir -buffer-name=buffer -auto-preview file_rec<CR>
+nnoremap <silent> ,f :<C-u>DeniteProjectDir -buffer-name=files -auto-preview file_rec<CR>
+nnoremap <silent> ,l :<C-u>Denite outline<CR>
+nnoremap <silent> ,g :<C-u>DeniteCursorWord -buffer-name=gtags_context gtags_context<CR>
+'''
+hook_post_source = '''
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag'])
+
+call denite#custom#map('normal', '<C-n>', '<denite:move_to_next_line>')
+call denite#custom#map('normal', '<C-p>', '<denite:move_to_previous_line>')
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>')
+call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>')
+call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>')
+
+call denite#custom#map('insert', '<C-s>', '<denite:do_action:split>')
+call denite#custom#map('insert', '<C-i>', '<denite:do_action:vsplit>')
+call denite#custom#map('insert', '<C-o>', '<denite:do_action:tabopen>')
+
+call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+call denite#custom#map('insert', 'jf', '<denite:enter_mode:normal>')
+
+call denite#custom#option('default', 'prompt', '>')
+
+call denite#custom#source(
+    \ 'file_rec', 'matchers', ['matcher_fuzzy', 'matcher_project_files', 'matcher_ignore_globs'])
+
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ [ '.git/', '.ropeproject/', '__pycache__/',
+    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+    \   'vendor/', '*.o'])
+'''
+
+[[plugins]]
 repo = 'zchee/deoplete-go'
 depends = 'deoplete.nvim'
-if = "has('nvim')"
 on_ft = 'go'
 build = 'make'
 hook_source = '''
@@ -48,16 +129,16 @@ let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
 '''
 
-[[plugins]]
-repo = 'ujihisa/neco-look'
-on_source = ['neocomplete.vim', 'deoplete.nvim']
-
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-hook_source = '''
-let g:racer_cmd = "~/.cargo/bin/racer"
-'''
+# [[plugins]]
+# repo = 'ujihisa/neco-look'
+# on_source = ['neocomplete.vim', 'deoplete.nvim']
+#
+# [[plugins]]
+# repo = 'racer-rust/vim-racer'
+# on_ft = 'rust'
+# hook_source = '''
+# let g:racer_cmd = "~/.cargo/bin/racer"
+# '''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -76,12 +157,9 @@ on_ft = 'vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
-#[[plugins]]
-#repo = 'Shougo/neoinclude.vim'
-
 [[plugins]]
 repo = 'vim-jp/cpp-vim'
-on_ft = ['c', 'cpp']
+on_ft = ['cpp']
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
@@ -153,3 +231,8 @@ on_ft = 'vue'
 [[plugins]]
 repo = 'mattn/emmet-vim'
 on_ft = 'html'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_i = 1
+on_ft = ['ruby']

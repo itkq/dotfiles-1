@@ -4,31 +4,95 @@ repo = 'Shougo/dein.vim'
 # ==========================================================
 # color
 # ==========================================================
+
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'joshdick/onedark.vim'
+hook_add = '''
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+syntax on
+colorscheme onedark
+'''
+
+
+# ==========================================================
+# filer
+# ==========================================================
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+hook_add = '''
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_as_default_explorer = 1
+nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
+
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = ' '
+let g:vimfiler_marked_file_icon = '*'
+'''
+
 
 # ==========================================================
 # basic
 # ==========================================================
 
-# [[plugins]]
+[[plugins]]
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''
-source ~/.config/nvim/plugins/nerdcomenter.rc.vim
+let g:NERDCreateDefaultMappings = 0
+
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+nmap <C-c> <Plug>NERDCommenterToggle
+vmap <C-c> <Plug>NERDCommenterToggle
 '''
 
 [[plugins]]
 # Show search result nicely
 repo = 'osyo-manga/vim-anzu'
 hook_add = '''
-source ~/.config/nvim/plugins/anzu.rc.vim
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
+set statusline=%{anzu#search_status()}
 '''
 
 [[plugins]]
 # Parensis completion
 repo = 'LeafCage/yankround.vim.git'
 hook_add = '''
-source ~/.config/nvim/plugins/yankround.rc.vim
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 '''
 
 [[plugins]]
@@ -40,7 +104,6 @@ repo = 'Shougo/vinarise.vim'
 on_cmd = 'Vinarise'
 
 [[plugins]]
-# Enhance f/F command in normal mode
 repo = 'rhysd/clever-f.vim'
 
 [[plugins]]
@@ -53,27 +116,26 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 '''
 
+# [[plugins]]
+# repo = 'kana/vim-operator-user'
+#
+# [[plugins]]
+# repo = 'kana/vim-textobj-user'
+#
+# [[plugins]]
+# repo = 'kana/vim-textobj-function'
+
+# [[plugins]]
+# repo = 'osyo-manga/vim-operator-search'
+# depends = ['vim-operator-user', 'vim-textobj-function', 'vim-textobj-user']
+# hook_add = '''
+# nmap <Space>/ <Plug>(operator-search)if
+# '''
+
 [[plugins]]
-repo = 'milkypostman/vim-togglelist'
+repo = 'osyo-manga/vim-over'
 hook_add = '''
-nmap <script> <silent> <C-l> :call ToggleLocationList()<CR>
-nmap <script> <silent> <C-q> :call ToggleQuickfixList()<CR> " Bug: not work in neovim
-'''
-
-[[plugins]]
-repo = 'kana/vim-operator-user'
-
-[[plugins]]
-repo = 'kana/vim-textobj-user'
-
-[[plugins]]
-repo = 'kana/vim-textobj-function'
-
-[[plugins]]
-repo = 'osyo-manga/vim-operator-search'
-depends = ['vim-operator-user', 'vim-textobj-function', 'vim-textobj-user']
-hook_add = '''
-nmap <Space>/ <Plug>(operator-search)if
+nnoremap <silent> <space>r :OverCommandLine<CR>
 '''
 
 [[plugins]]
@@ -83,7 +145,7 @@ repo = 'houtsnip/vim-emacscommandline'
 repo = 'tpope/vim-repeat'
 
 [[plugins]]
-repo = 'bitc/vim-bad-whitespace'
+repo = 'bronson/vim-trailing-whitespace'
 
 # ==========================================================
 # linter
@@ -93,24 +155,28 @@ repo = 'bitc/vim-bad-whitespace'
 repo = 'neomake/neomake'
 if = "has('nvim')"
 hook_add = '''
-source ~/.config/nvim/plugins/neomake.rc.vim
-'''
+autocmd! BufWritePost * Neomake
 
-# ==========================================================
-# filer
-# ==========================================================
+autocmd MyAutoCmd VimEnter * highlight SignColumn ctermbg=237
+autocmd MyAutoCmd ColorScheme * hi NeomakeErrorSign cterm=bold ctermfg=255 ctermbg=203
+autocmd MyAutoCmd ColorScheme * hi NeomakeWarningSign cterm=bold ctermfg=233 ctermbg=150
+autocmd MyAutoCmd ColorScheme * hi NeomakeMessageSign cterm=bold ctermfg=8 ctermbg=150
+autocmd MyAutoCmd ColorScheme * hi NeomakeInfoSign cterm=bold ctermfg=8 ctermbg=110
 
-[[plugins]]
-repo = 'Shougo/unite.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/unite.rc.vim
-'''
+let g:neomake_error_sign = {'text': 'E➤', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {
+    \   'text': 'W➤',
+    \   'texthl': 'NeomakeWarningSign',
+    \ }
+let g:neomake_message_sign = {
+     \   'text': 'M➤',
+     \   'texthl': 'NeomakeMessageSign',
+     \ }
+let g:neomake_info_sign = {'text': 'ℹ➤', 'texthl': 'NeomakeInfoSign'}
 
-[[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'unite.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/vimfiler.rc.vim
+let g:neomake_cpp_enabled_makers = ['gcc']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 '''
 
 # ==========================================================
@@ -127,7 +193,25 @@ repo = 'tpope/vim-fugitive'
 repo = 'vim-airline/vim-airline'
 depends = ['tagbar', 'vim-fugitive']
 hook_add = '''
-source ~/.config/nvim/plugins/airline.rc.vim
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.crypt = 'CR'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = 'LF'
+let g:airline_symbols.linenr = 'NL'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = 'RO'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#taboo#enabled = 1
 '''
 
 [[plugins]]
@@ -146,25 +230,20 @@ let g:taboo_tabline = 0
 
 [[plugins]]
 repo = 'kassio/neoterm'
-if = "has('nvim')"
 hook_add = '''
-source ~/.config/nvim/plugins/neoterm.rc.vim
-'''
-
-[[plugins]]
-repo = 'Shougo/vimshell'
-if = "!has('nvim')"
-hook_add = '''
-source ~/.config/nvim/plugins/vimshell.rc.vim
+nnoremap <silent> ,rl :TREPLSendLine<cr>
+vnoremap <silent> ,rl :TREPLSendSelection<cr>
+nnoremap <silent> vt :Ttoggle<cr>
+nnoremap <silent> vs :terminal<cr>
 '''
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-if = "!has('nvim')"
 build = 'make'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
+
 
 # ==========================================================
 # git
@@ -174,8 +253,13 @@ repo = 'thinca/vim-quickrun'
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 let g:gitgutter_override_sign_column_highlight = 1
-highlight clear SignColumn
-"highlight SignColumn ctermbg=None
+hi clear SignColumn
+hi SignColumn ctermbg=None
+hi clear SignColumn
+hi GitGutterAdd ctermfg=green
+hi GitGutterChange ctermfg=yellow
+hi GitGutterDelete ctermfg=red
+hi GitGutterChangeDelete ctermfg=yellow
 '''
 
 [[plugins]]
@@ -195,3 +279,19 @@ let g:indentLine_char = '¦'
 
 [[plugins]]
 repo = 'fuenor/qfixgrep'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+nmap <Space>h <Plug>(quickhl-manual-this)
+xmap <Space>h <Plug>(quickhl-manual-this)
+nmap <Space>H <Plug>(quickhl-manual-reset)
+xmap <Space>H <Plug>(quickhl-manual-reset)
+'''
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+hook_add = '''
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+'''

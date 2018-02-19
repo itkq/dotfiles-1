@@ -1,4 +1,3 @@
-" https://github.com/yymm/.dotfiles/blob/08ebcb0935799597c07be0dc888969b2a649fd9f/config/nvim/init.vim
 if &compatible
   set nocompatible
 endif
@@ -7,13 +6,7 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-if exists('g:nyaovim_version')
-  let s:dein_cache_path = expand('~/.cache/nyaovim/dein')
-elseif has('nvim')
-  let s:dein_cache_path = expand('~/.cache/nvim/dein')
-else
-  let s:dein_cache_path = expand('~/.cache/vim/dein')
-endif
+let s:dein_cache_path = expand('~/.cache/nvim/dein')
 
 let s:dein_dir = s:dein_cache_path
                  \ .'/repos/github.com/Shougo/dein.vim'
@@ -31,12 +24,6 @@ if dein#load_state(s:dein_cache_path)
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy' : 0})
   call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
 
-  if exists('g:nyaovim_version')
-    call dein#add('rhysd/nyaovim-popup-tooltip')
-    call dein#add('rhysd/nyaovim-markdown-preview')
-    call dein#add('rhysd/nyaovim-mini-browser')
-  endif
-
   call dein#end()
   call dein#save_state()
 endif
@@ -47,6 +34,9 @@ endif
 
 filetype plugin indent on
 syntax enable
+let g:deoplete#enable_at_startup = 1
 
-runtime! options.rc.vim
+runtime! color.rc.vim
+runtime! syntax.rc.vim
 runtime! keymap.rc.vim
+runtime! options.rc.vim

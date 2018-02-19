@@ -1,8 +1,5 @@
 set background=dark
-
-" Override color settings
-hi LineNr ctermfg=240
-hi SignColumn ctermbg=None
+set cursorline
 
 " File operation
 set hidden
@@ -52,15 +49,7 @@ if has('mouse')
   set mouse=
 endif
 
-if has('unix')
-  autocmd MyAutoCmd ColorScheme * hi SpecialKey ctermfg=darkmagenta ctermbg=none
-else
-  autocmd MyAutoCmd ColorScheme * hi SpecialKey ctermfg=darkmagenta
-endif
 set list listchars=tab:¦_
-
-" highlighting zenkaku space
-autocmd MyAutoCmd BufRead,BufNew * match Error /　/
 
 " ===========================================================
 " disable default plugins
@@ -87,13 +76,3 @@ let g:loaded_tutor_mode_plugin = 1
 let g:loaded_spellfile_plugin  = 1
 let g:loaded_man               = 1
 let g:loaded_matchit           = 1
-
-"
-" for Lang
-"
-autocmd MyAutoCmd FileType fortran set colorcolumn=5
-autocmd MyAutoCmd FileType cpp set ts=4 sts=0 sw=4 noet
-
-
-autocmd ColorScheme * highlight LineNr ctermfg=240
-autocmd ColorScheme * highlight SignColumn ctermbg=None
