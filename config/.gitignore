@@ -24,3 +24,6 @@ dump.rdb
 .gdbinit
 .envrc
 vendor/bundle
+GPATH
+GRTAGS
+GTAGS
