@@ -1,6 +1,6 @@
 # Configuration for git
-alias gci="git commit -S"
-alias gcim="git commit -S -m"
+alias gci="git commit -v -S"
+alias gcim="git commit -v -S -m"
 alias gm="git merge"
 alias gst="git status"
 alias gco="git checkout"
@@ -10,7 +10,7 @@ alias gaa="ga -A"
 alias gf="git fetch"
 alias gd="git diff --word-diff=color"
 alias gignore="git rm -r --cached .; git add ."
-alias gca="git commit -S --amend"
+alias gca="git commit -v -S --amend"
 alias gcan="git commit -S --amend --no-edit"
 alias gcop='git status | grep modified | awk "{print \$2}" | peco | xargs git checkout'
 alias git_delete_local_branch='git branch --merged | grep -v "*" | grep -v master | grep -v for_tracking | xargs git branch -d'
