@@ -8,26 +8,9 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 hook_add = '''
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
 syntax on
 colorscheme onedark
 '''
-
 
 # ==========================================================
 # basic
@@ -61,28 +44,6 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
 '''
 
-# [[plugins]]
-# # Parensis completion
-# repo = 'LeafCage/yankround.vim.git'
-# hook_add = '''
-# nmap p <Plug>(yankround-p)
-# xmap p <Plug>(yankround-p)
-# nmap P <Plug>(yankround-P)
-# nmap gp <Plug>(yankround-gp)
-# xmap gp <Plug>(yankround-gp)
-# nmap gP <Plug>(yankround-gP)
-# nmap <C-p> <Plug>(yankround-prev)
-# nmap <C-n> <Plug>(yankround-next)
-# '''
-
-[[plugins]]
-repo = 'cohama/lexima.vim'
-
-[[plugins]]
-# Edit binary
-repo = 'Shougo/vinarise.vim'
-on_cmd = 'Vinarise'
-
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 
@@ -96,23 +57,8 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 '''
 
-# [[plugins]]
-# repo = 'kana/vim-operator-user'
-#
-# [[plugins]]
-# repo = 'kana/vim-textobj-user'
-#
-# [[plugins]]
-# repo = 'kana/vim-textobj-function'
-
-# [[plugins]]
-# repo = 'osyo-manga/vim-operator-search'
-# depends = ['vim-operator-user', 'vim-textobj-function', 'vim-textobj-user']
-# hook_add = '''
-# nmap <Space>/ <Plug>(operator-search)if
-# '''
-
 [[plugins]]
+# Enhance to replace
 repo = 'osyo-manga/vim-over'
 hook_add = '''
 nnoremap <silent> <space>r :OverCommandLine<CR>
@@ -127,13 +73,12 @@ repo = 'tpope/vim-repeat'
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
-# ==========================================================
-# linter
-# ==========================================================
+# # ==========================================================
+# # linter
+# # ==========================================================
 
 [[plugins]]
 repo = 'neomake/neomake'
-if = "has('nvim')"
 hook_add = '''
 autocmd! BufWritePost * Neomake
 
@@ -204,9 +149,9 @@ let g:taboo_tab_format=' t%N %f%m '
 let g:taboo_tabline = 0
 '''
 
-# ==========================================================
-# terminal
-# ==========================================================
+# # ==========================================================
+# # terminal
+# # ==========================================================
 
 [[plugins]]
 repo = 'kassio/neoterm'
@@ -225,9 +170,9 @@ build = 'make'
 repo = 'thinca/vim-quickrun'
 
 
-# ==========================================================
-# git
-# ==========================================================
+# # ==========================================================
+# # git
+# # ==========================================================
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -245,57 +190,62 @@ hi GitGutterChangeDelete ctermfg=yellow
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-# ==========================================================
-# gtags
-# ==========================================================
+# # ==========================================================
+# # others
+# # ==========================================================
 
-[[plugins]]
-repo = 'lighttiger2505/gtags.vim'
-hook_add = '''
-let g:Gtags_Auto_Map = 1
-let g:Gtags_OpenQuickfixWindow = 1
-nnoremap <C-g> :Gtags
-nnoremap <C-h> :Gtags -f %<CR>
-nnoremap <C-j> :GtagsCursor<CR>
-nnoremap <C-n> :cn<CR>
-nnoremap <C-p> :cp<CR>
-'''
-
-[[plugins]]
-repo = 'zebult/auto-gtags.vim'
-hook_add = '''
-let g:auto_update_gtags = 1
-'''
-
-
-# ==========================================================
-# others
-# ==========================================================
-
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-hook_add = '''
-let g:indentLine_color_term = 237
-let g:indentLine_color_gui = '#3c444d'
-let g:indentLine_char = '¦'
-'''
+# [[plugins]]
+# repo = 'Yggdroot/indentLine'
+# hook_add = '''
+# let g:indentLine_color_term = 237
+# let g:indentLine_color_gui = '#3c444d'
+# let g:indentLine_char = '¦'
+# '''
 
 [[plugins]]
 repo = 'fuenor/qfixgrep'
 
-[[plugins]]
-repo = 't9md/vim-quickhl'
-hook_add = '''
-nmap <Space>h <Plug>(quickhl-manual-this)
-xmap <Space>h <Plug>(quickhl-manual-this)
-nmap <Space>H <Plug>(quickhl-manual-reset)
-xmap <Space>H <Plug>(quickhl-manual-reset)
-'''
+# [[plugins]]
+# repo = 't9md/vim-quickhl'
+# hook_add = '''
+# nmap <Space>h <Plug>(quickhl-manual-this)
+# xmap <Space>h <Plug>(quickhl-manual-this)
+# nmap <Space>H <Plug>(quickhl-manual-reset)
+# xmap <Space>H <Plug>(quickhl-manual-reset)
+# '''
+#
+# # [[plugins]]
+# # repo = 'rhysd/accelerated-jk'
+# # hook_add = '''
+# # nmap j <Plug>(accelerated_jk_gj)
+# # nmap k <Plug>(accelerated_jk_gk)
+# # '''
 
 [[plugins]]
-repo = 'rhysd/accelerated-jk'
+repo = 'Lokaltog/vim-easymotion'
 hook_add = '''
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-s2)
 '''
 
+# # ==========================================================
+# # ctrlp
+# # ==========================================================
+#
+# # [[plugins]]
+# # repo = 'nixprime/cpsm'
+#
+# [[plugins]]
+# repo = 'ctrlpvim/ctrlp.vim'
+# # depends = 'cpsm'
+# # hook_add = '''
+# # # let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+# # '''
+#
+# [[plugins]]
+# repo = 'ivalkeen/vim-ctrlp-tjump'
+# depends = 'ctrlp.vim'
+#
+# [[plugins]]
+# repo = 'tacahiroy/ctrlp-funky'
+# depends = 'ctrlp.vim'
