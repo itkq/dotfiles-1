@@ -235,7 +235,7 @@ function remove_merged_branches() {
   local remote_merged_branches=$(git branch -r --merged | grep origin | egrep -v "master|HEAD" | sed -e 's#origin/##')
 
   if ! [ -z $remote_merged_branches ]; then
-    echo Found merged remote branches.
+    echo 'Found merged remote branches in origin.'
     echo $remote_merged_branches | xargs git push -n --delete origin
     read Answer\?'Are you sure? [Y/n] '
     case $Answer in
