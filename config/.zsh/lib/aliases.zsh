@@ -16,6 +16,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # cd by dir name only for ..
 alias ..="cd .."
 
+alias l=ll
+alias lll=ll
+
 which nvim > /dev/null && alias vim=nvim && export EDITOR=nvim
 
 function mkcd() {
