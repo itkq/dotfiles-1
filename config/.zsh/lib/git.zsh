@@ -200,7 +200,16 @@ function gupdate(){
   local change_branch_flg=0
   [ -z "$(git status --short)" ] || (git stash push -u -q && stash_flg=1)
   [ "$(__current_branch)" != "master" ] && git checkout master && change_branch_flg=1
-  git fetch upstream && git merge --ff upstream/master
+
+  if git remote | grep -q upstream; then
+    git fetch upstream
+    remove_merged_branches
+    git merge --ff upstream/master
+  else
+    git fetch origin
+    remove_merged_branches
+    git merge --ff origin/master
+  fi
   (( $change_branch_flg )) && git checkout -
   (( $stash_flg )) && git stash pop
   true
@@ -211,4 +220,30 @@ function propen() {
   local remote=$(git branch -vv | grep '^*' | awk '{ print $4 }' | cut -d/ -f1 | sed -e 's/^\[//')
   local repo_url=$(git remote show -n $remote | grep 'Push  URL' | grep -E -o '[^ ]+$' | sed -e 's|^https://||' -e 's/^git@//' -e 's/\.git$//' -e 's|:|/|')
   open "https://${repo_url}/pull/${current_branch_name}"
+}
+
+function remove_merged_branches() {
+  local merged_branches=$(git branch --merged | egrep -v "(master|develop)")
+  if echo $merged_branches | grep -q '*'; then
+    git checkout master
+  fi
+
+  if ! [ -z $merged_branches ]; then
+    echo $merged_branches | tr -d '*' | xargs git branch -d
+  fi
+
+  local remote_merged_branches=$(git branch -r --merged | grep origin | egrep -v "master|HEAD" | sed -e 's#origin/##')
+
+  if ! [ -z $remote_merged_branches ]; then
+    echo Found merged remote branches.
+    echo $remote_merged_branches | xargs git push -n --delete origin
+    read Answer\?'Are you sure? [Y/n] '
+    case $Answer in
+      '' | [Yy]* )
+        echo $remote_merged_branches | xargs git push --delete origin
+        ;;
+      * )
+        ;;
+    esac
+  fi
 }
