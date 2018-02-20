@@ -15,7 +15,7 @@ export PATH="/opt/brew/bin:/usr/local/bin:${PATH}"
 # cd by dir name only for ..
 alias ..="cd .."
 
-which nvim > /dev/null && alias vim=nvim
+which nvim > /dev/null && alias vim=nvim && export EDITOR=nvim
 
 function mkcd() {
   mkdir $1
