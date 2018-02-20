@@ -11,6 +11,7 @@ function vi() {
 
 # Prefer brew's vim
 export PATH="/opt/brew/bin:/usr/local/bin:${PATH}"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # cd by dir name only for ..
 alias ..="cd .."
