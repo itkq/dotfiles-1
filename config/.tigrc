@@ -2,7 +2,7 @@ bind main    B !git rebase -i %(commit) --autostash
 bind diff    B !git rebase -i %(commit) --autostash
 
 bind generic L      !sh -c "git reflog --pretty=raw | tig --pretty=raw"
-bind generic H      !sh -c "git log -p %(file)| tig --pretty=raw"
+bind generic H      !sh -c "git log -p --pretty=raw -- %(file)| tig --pretty=raw"
 bind generic P      ?git push -u %(remote) %(repo:head)
 bind generic U      ?git pull %(remote)
 
