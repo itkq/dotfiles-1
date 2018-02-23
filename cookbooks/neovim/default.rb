@@ -21,8 +21,11 @@ end
 
 execute 'pip install solargraph-utils.py --user' do
   not_if 'pip list --format=columns | grep -q solargraph-utils'
+  notifies :run, 'execute[yard gems]'
 end
 
-execute 'yard gems'
+execute 'yard gems' do
+  action :nothing
+end
 
 dotfile '.config/nvim'
