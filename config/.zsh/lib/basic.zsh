@@ -4,7 +4,6 @@ export LANG=ja_JP.UTF-8
 # auto pushd
 setopt auto_pushd
 setopt pushd_ignore_dups
-
 # share zsh history
 setopt share_history
 export HISTFILE=${HOME}/.zsh_history
@@ -28,3 +27,5 @@ bindkey -e
 # direnv
 export EDITOR=vim
 eval "$(direnv hook zsh)"
+
+export GTAGSLABEL=pygments
