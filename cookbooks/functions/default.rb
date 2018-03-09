@@ -40,7 +40,7 @@ curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -
     fi
     mv $tmp_path "${bin_path%/}/$cmd" && chmod u+x "${bin_path%/}/$cmd"
     ;;
-  "application/x-gzip")
+  "application/x-gzip" | "application/x-tar")
     cd /tmp && tar xzf $tmp_path && chmod +x $cmd && mv $cmd "${bin_path%/}/$cmd"
     ;;
   "application/x-mach-binary" | "application/octet-stream")
