@@ -19,8 +19,8 @@ execute 'gem install solargraph' do
   not_if 'gem list | grep -q solargraph'
 end
 
-execute 'pip install solargraph-utils.py --user' do
-  not_if 'pip list --format=columns | grep -q solargraph-utils'
+execute 'pip3 install solargraph-utils.py --user' do
+  not_if 'pip3 list --format=columns | grep -q solargraph-utils'
   notifies :run, 'execute[yard gems]'
 end
 
