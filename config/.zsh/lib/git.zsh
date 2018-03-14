@@ -232,15 +232,19 @@ function remove_merged_branches() {
     echo $merged_branches | tr -d '*' | xargs git branch -d
   fi
 
-  local remote_merged_branches=$(git branch -r --merged | grep origin | egrep -v "master|HEAD" | sed -e 's#origin/##')
+  # local my_remote_merged_branches=$(git for-each-ref --sort=committerdate --format='%(committerdate:short)%09%(authorname)%09%(refname)' refs/remotes --merged | grep "$(git config user.name)")
+  local prune_branches=$(git remote prune origin --dry-run)
+  if ! [ -z $prune_branches ]; then
+    echo $prune_branches
+    # echo 'Found already merged branches in origin.'
+    # echo $my_remote_merged_branches
 
-  if ! [ -z $remote_merged_branches ]; then
-    echo 'Found merged remote branches in origin.'
-    echo $remote_merged_branches | xargs git push -n --delete origin
+    # echo $my_remote_merged_branches | awk -F'\t' '{print $3}' | xargs git push -n --delete origin
     read Answer\?'Are you sure? [Y/n] '
     case $Answer in
       '' | [Yy]* )
-        echo $remote_merged_branches | xargs git push --delete origin
+        # echo $my_remote_merged_branches | awk -F'\t' '{print $3}' | xargs git push --delete origin
+        git remote prune origin
         ;;
       * )
         ;;
