@@ -3,3 +3,7 @@
   email = takuya-kosugiyama@cookpad.com
 [hub]
 	host = ghe.ckpd.co
+[merge "mergepbx"]
+	name = Xcode project files merger
+	driver = mergepbx %O %A %B
+	note = auto-generated configuration by cpad2 upgrade
