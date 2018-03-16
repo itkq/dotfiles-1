@@ -28,4 +28,4 @@ bindkey -e
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 
-export GTAGSLABEL=pygments
+# export GTAGSLABEL=pygments
