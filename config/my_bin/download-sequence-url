@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'fileutils'
+require 'pathname'
+require 'open-uri'
+require 'net/http'
+
+def save(url, base_path)
+  puts url
+  data = open(url).read
+  filename = File.basename(url)
+
+  open(Pathname.new(base_path) + filename, 'wb') do |out|
+    out.write(data)
+  end
+end
+
+params = {}
+OptionParser.new do |opt|
+  opt.on('-u', '--url-template=VAL') { |v| params[:url]   = v }
+  opt.on('-d', '--save-dir=VAL')     { |v| params[:dir]   = v }
+  opt.on('-s', '--start=VAL')        { |v| params[:start] = v.to_i }
+  opt.on('-e', '--end=VAL')          { |v| params[:end]   = v.to_i }
+
+  opt.parse!(ARGV)
+end
+
+unless params[:url]
+  $stderr.puts 'url template parameter must be provided.'
+  abort
+end
+
+unless params[:end]
+  $stderr.puts 'end parameter must be provided.'
+  abort
+end
+
+params[:dir] ||= './'
+params[:start] ||= 1
+
+save_dir = Pathname.new(File.expand_path('..', __FILE__)).join(params[:dir])
+FileUtils.mkdir_p(save_dir)
+
+[*params[:start]..params[:end]].each do |i|
+  begin
+    save(params[:url] % [i], save_dir)
+  rescue OpenURI::HTTPError
+    puts "#{$!.class}: #{$!.message}"
+    exit
+  end
+
+  sleep 1
+end
