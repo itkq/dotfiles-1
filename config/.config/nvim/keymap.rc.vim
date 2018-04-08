@@ -20,8 +20,8 @@ noremap <CR> o<ESC>
 
 " Tab
 nnoremap T :<C-u>tabnew<CR>
-nnoremap H gt
-nnoremap L gT
+nnoremap H gT
+nnoremap L gt
 
 nnoremap sn gt
 nnoremap sp gT
@@ -39,10 +39,13 @@ nnoremap <silent> <C-L> :noh<C-L><CR>
 nnoremap W :<C-u>wq<CR>
 nnoremap D :<C-u>q<CR>
 
-"change display mapping
+" change display mapping
 nmap <Down> <C-w>j
 nmap <Up> <C-w>k
 nmap <Left> <C-w>h
 nmap <Right> <C-w>l
 
-nnoremap tig :<C-u>w<CR>:te tig<CR>
+" move buffer
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
