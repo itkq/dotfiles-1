@@ -5,6 +5,7 @@ package 'gist'
 package 'direnv'
 package 'autojump'
 package 'gron'
+package 'tig'
 
 package 'global' do
   options '--with-exuberant-ctags --with-pygments'
