@@ -23,6 +23,7 @@ source ~/.zsh/lib/ruby.zsh
 source ~/.zsh/lib/theme.zsh
 source ~/.zsh/lib/tmux.zsh
 source ~/.zsh/lib/bundle.zsh
+source ~/.zsh/lib/zplug.zsh
 
 # Environment-local configurations
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
