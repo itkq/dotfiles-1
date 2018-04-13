@@ -1,4 +1,4 @@
-CKPD_HOSTNAME = 'P555.local'
+CKPD_HOSTNAME = 'P1328-18P13U.local'
 node.reverse_merge!(
   is_working: `hostname`.strip == CKPD_HOSTNAME
 )
