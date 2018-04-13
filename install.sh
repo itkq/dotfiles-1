@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
-if ! [ -d config/.vim/bundle/neobundle.vim/.git ]; then
-  git submodule init && git submodule update --depth 1
-fi
+# if ! [ -d config/.vim/bundle/neobundle.vim/.git ]; then
+#   git submodule init && git submodule update --depth 1
+# fi
 
 bin/setup
 
