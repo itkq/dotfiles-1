@@ -1,9 +1,6 @@
 [submodule "config/.vim/bundle/neobundle.vim"]
 	path = config/.vim/bundle/neobundle.vim
 	url = https://github.com/k0kubun/neobundle.vim
-[submodule "config/.vim/dicts"]
-	path = config/.vim/dicts
-	url = https://github.com/pocke/dicts
 [submodule "config/.zsh/bundle/enhancd"]
 	path = config/.zsh/bundle/enhancd
 	url = https://github.com/b4b4r07/enhancd
