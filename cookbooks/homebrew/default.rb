@@ -9,6 +9,7 @@ package 'tig'
 package 'hugo'
 package 'tree'
 package 'telnet'
+package 'ngrep'
 
 package 'global' do
   options '--with-exuberant-ctags --with-pygments'
