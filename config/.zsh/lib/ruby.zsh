@@ -8,6 +8,7 @@ if [ "${RBENV_ROOT}" != "/usr/share/rbenv" ]; then
 fi
 
 # bundler
+alias b="bundle"
 alias be="bundle exec"
 
 # bundle open
