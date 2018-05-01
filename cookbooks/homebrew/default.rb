@@ -10,6 +10,8 @@ package 'hugo'
 package 'tree'
 package 'telnet'
 package 'ngrep'
+package 'entr'
+package 'jq'
 
 package 'global' do
   options '--with-exuberant-ctags --with-pygments'
