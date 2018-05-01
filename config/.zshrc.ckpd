@@ -1,6 +1,0 @@
-source ~/.cpad2/profile
-
-export AWSSH_CSSH=$HOME/my_bin/tmux-nested-cssh
-alias s='envchain ckpdaws awssh'
-
-export PATH=$PATH:$HOME/ckpd_bin
