@@ -1,6 +1,6 @@
 [user]
-  name = itkq
-  email = kuogsi@gmail.com
+	name = itkq
+	email = kuogsi@gmail.com
 	signingkey = E7A3B4722429F3D4AC7A268DBBDC3D0A1BE808A0
 [includeIf "gitdir:~/src/ghe.ckpd.co/"]
   path = ~/.gitconfig_ckpd
