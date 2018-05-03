@@ -26,7 +26,7 @@ os=#{node[:os]}
 
 cmd=#{cmd}
 release_url=$(curl -sSL https://api.github.com/repos/$repos/releases/latest \
-  | grep browser_download_url | grep -i $os | grep -i amd64 | awk -F'"' '{print $4}')
+  | grep browser_download_url | grep -i $os | egrep -i "amd64|x86_64" | awk -F'"' '{print $4}')
 tmp_path=/tmp/$(basename $release_url)
 
 curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -d' ' -f2) in
@@ -41,7 +41,14 @@ curl -fSL -o $tmp_path $release_url && case $(file --mime-type $tmp_path | cut -
     mv $tmp_path "${bin_path%/}/$cmd" && chmod u+x "${bin_path%/}/$cmd"
     ;;
   "application/x-gzip" | "application/x-tar")
-    cd /tmp && tar xzf $tmp_path && chmod +x $cmd && mv $cmd "${bin_path%/}/$cmd"
+    dst=$(echo $tmp_path | sed 's/\.tar\.gz$//')
+    tar xzf $tmp_path -C /tmp
+    if [ -d $dst ]; then
+      tmp_path="$(find $dst -name "$cmd" | head -n 1)"
+    else
+      tmp_path="$(echo $tmp_path | sed 's/\.[^\.]*$//')/$cmd"
+    fi
+    mv $tmp_path "${bin_path%/}/$cmd" && chmod u+x "${bin_path%/}/$cmd"
     ;;
   "application/x-mach-binary" | "application/octet-stream")
     mv $tmp_path "${bin_path%/}/$cmd" \
