@@ -24,3 +24,5 @@ dotfile '.railsrc'
 dotfile '.rake'
 dotfile '.tigrc'
 dotfile '.globalrc'
+
+dotfile '.iterm2'
