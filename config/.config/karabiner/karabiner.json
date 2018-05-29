@@ -156,7 +156,8 @@
                                     "key_code": "n",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "left_control",
+                                            "left_shift"
                                         ]
                                     }
                                 },
@@ -183,7 +184,8 @@
                                     "key_code": "p",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "left_control",
+                                            "left_shift"
                                         ]
                                     }
                                 },
