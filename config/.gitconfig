@@ -2,10 +2,8 @@
 	name = itkq
 	email = kuogsi@gmail.com
 	signingkey = E7A3B4722429F3D4AC7A268DBBDC3D0A1BE808A0
-[includeIf "gitdir:~/src/ghe.ckpd.co/"]
+[includeIf "gitdir:~/src/ghe"]
   path = ~/.gitconfig_ckpd
-[includeIf "gitdir:~/src/gitlab.net.ict.e.titech.ac.jp/"]
-  path = ~/.gitconfig_lab
 [color]
   ui = true
 [core]

@@ -155,20 +155,6 @@ function preq() {
   fi
 }
 
-# ghe get
-function ghe() {
-  case $1 in
-    get )
-      # You must export $GHE_HOST in ~/.zshrc.local
-      ghq get $GHE_HOST:$2
-      ;;
-    * )
-      ghq $@
-      ;;
-  esac
-}
-
-
 GITHUB_USERNAME="Takuya Kosugiyama"
 LF=$'\\\x0A'
 
