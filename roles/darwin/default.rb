@@ -16,6 +16,7 @@ include_cookbook 'tmux'
 include_cookbook 'gnupg'
 include_cookbook 'bin'
 include_cookbook 'karabiner'
+include_cookbook 'rust'
 
 dotfile '.gemrc'
 dotfile '.peco'

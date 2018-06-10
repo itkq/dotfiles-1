@@ -30,3 +30,17 @@ define :cargo do
     not_if %Q[cargo install --list | grep "^#{params[:name]} "]
   end
 end
+
+execute "rustup default nightly" do
+  not_if "rustup toolchain list | grep -q nightly"
+end
+
+%w(rust-src rust-analysis rls-preview).each do |c|
+  execute "rustup component add --toolchain=nightly #{c}" do
+    not_if "rustup component list | grep -q #{c}"
+  end
+end
+
+cargo 'racer'
+cargo 'cargo-edit'
+cargo 'rusty-tags'
