@@ -1,0 +1,33 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontFamily": "Consolas",
+    "editor.fontSize": 13,
+    "editor.wordWrap": "on",
+    "workbench.colorTheme": "Atom One Dark",
+    "vim.useSystemClipboard": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "f"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.hlsearch": true,
+    "go.lintOnSave": "off",
+    "extensions.ignoreRecommendations": true,
+    "[vue]": {
+        "editor.tabSize": 2
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "guides.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "terminal.integrated.fontSize": 13,
+}
