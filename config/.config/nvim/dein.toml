@@ -187,9 +187,6 @@ hi GitGutterDelete ctermfg=red
 hi GitGutterChangeDelete ctermfg=yellow
 '''
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
 # # ==========================================================
 # # others
 # # ==========================================================
