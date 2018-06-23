@@ -44,3 +44,4 @@ end
 cargo 'racer'
 cargo 'cargo-edit'
 cargo 'rusty-tags'
+cargo 'ripgrep'
