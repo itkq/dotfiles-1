@@ -1,0 +1,194 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+hook_add = '''
+syntax on
+colorscheme onedark
+highlight Normal ctermbg=none
+'''
+
+[[plugins]]
+repo = 'miyakogi/seiya.vim'
+hook_add = '''
+let g:seiya_auto_enable = 1
+'''
+
+[[plugins]]
+repo = 'houtsnip/vim-emacscommandline'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
+repo = 'mattn/gist-vim'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+hook_add = '''
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+'''
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+let g:unite_enable_start_insert = 1
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+if executable('ag')
+  let g:unite_source_grep_command = 'rg'
+  let g:unite_source_grep_default_opts = '--hidden --no-heading --vimgrep -S'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+nmap , [unite]
+nnoremap [unite] <nop>
+
+nnoremap <silent> [unite]f :<C-u>Unite -no-split -buffer-name=files -profile-name=buffer -auto-preview file_rec/async:!<cr>
+nnoremap <silent> [unite]l :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]o :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<cr>
+nnoremap <silent> [unite]g :<C-u>Unite grep/git:. -buffer-name=git<cr>
+nnoremap <silent> [unite]t :<C-u>Unite tab<cr>
+nnoremap <silent> [unite]b :<C-u>Unite -no-split -buffer-name=buffers -auto-preview buffer:<cr>
+nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=mru buffer file_mru:<cr>
+'''
+
+[[plugins]]
+repo = 'lambdalisue/unite-grep-vcs'
+depends = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+depends = 'unite.vim'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+depends = ['tagbar', 'vim-fugitive']
+hook_add = '''
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.crypt = 'CR'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = 'LF'
+let g:airline_symbols.linenr = 'NL'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = 'RO'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#taboo#enabled = 1
+'''
+
+[[plugins]]
+repo = 'gcmt/taboo.vim'
+depends = 'vim-airline'
+hook_add = '''
+"set guioptions-=e
+"set sessionoptions+=tabpages,globals
+let g:taboo_tab_format=' t%N %f%m '
+let g:taboo_tabline = 0
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_error = 'E➤'
+let g:ale_sign_warning = 'W➤'
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_lint_on_text_changed = 'normal'
+
+let g:ale_linters = {
+\   'html': [],
+\}
+
+let g:ale_fixers = {
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
+\   'vue': ['prettier', 'eslint'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'json': ['prettier'],
+\   'css': ['prettier'],
+\   'less': ['prettier'],
+\   'scss': ['prettier'],
+\   'python': ['autopep8'],
+\}
+
+let g:ale_fix_on_save = 1
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_override_sign_column_highlight = 1
+hi clear SignColumn
+hi SignColumn ctermbg=None
+hi clear SignColumn
+hi GitGutterAdd ctermfg=green
+hi GitGutterChange ctermfg=yellow
+hi GitGutterDelete ctermfg=red
+hi GitGutterChangeDelete ctermfg=yellow
+'''
+
+[[plugins]]
+repo = 'lighttiger2505/gtags.vim'
+hook_add = '''
+let g:Gtags_OpenQuickfixWindow = 1
+nnoremap <C-g> :Gtags
+nnoremap <C-h> :Gtags -f %<CR>
+nnoremap <C-j> :GtagsCursor<CR>
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+'''
+
+[[plugins]]
+repo = 'zebult/auto-gtags.vim'
+depends = 'gtags.vim'
+hook_add = '''
+let g:auto_update_gtags = 1
+'''

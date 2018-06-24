@@ -19,7 +19,7 @@ alias ..="cd .."
 alias l=ll
 alias lll=ll
 
-which nvim > /dev/null && alias vim=nvim && export EDITOR=nvim
+# which nvim > /dev/null && alias vim=nvim && export EDITOR=nvim
 
 function mkcd() {
   mkdir $1
