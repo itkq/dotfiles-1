@@ -100,6 +100,22 @@ repo = 'Shougo/unite-outline'
 depends = 'unite.vim'
 
 [[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+hook_add = '''
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_as_default_explorer = 1
+nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
+
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = ' '
+let g:vimfiler_marked_file_icon = '*'
+'''
+
+[[plugins]]
 repo = 'vim-airline/vim-airline'
 depends = ['tagbar', 'vim-fugitive']
 hook_add = '''
@@ -191,4 +207,32 @@ repo = 'zebult/auto-gtags.vim'
 depends = 'gtags.vim'
 hook_add = '''
 let g:auto_update_gtags = 1
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+let g:NERDCreateDefaultMappings = 0
+
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+nmap <C-c> <Plug>NERDCommenterToggle
+vmap <C-c> <Plug>NERDCommenterToggle
+'''
+
+[[plugins]]
+# Show search result nicely
+repo = 'osyo-manga/vim-anzu'
+hook_add = '''
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
+set statusline=%{anzu#search_status()}
 '''
