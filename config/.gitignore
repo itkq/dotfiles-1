@@ -23,7 +23,7 @@ dump.rdb
 .bundle
 .gdbinit
 .envrc
-vendor/bundle
+/vendor/bundle
 GPATH
 GRTAGS
 GTAGS
