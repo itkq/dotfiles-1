@@ -57,7 +57,7 @@ function peco-find-file() {
 	zle redisplay
 }
 zle -N peco-find-file
-bindkey '^q' peco-find-file
+bindkey '^g' peco-find-file
 
 # bundler directory
 function bundler-directory() {
