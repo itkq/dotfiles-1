@@ -119,9 +119,22 @@ on_ft = ['puppet']
 repo = 'kchmck/vim-coffee-script'
 on_ft = ['coffee']
 
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = ['tf']
+hook_add = '''
+let g:terraform_fmt_on_save = 1
+'''
 
+[[plugins]]
+repo = 'juliosueiras/vim-terraform-completion'
+on_ft = ['tf']
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
 on_i = 1
+on_ft = ['ruby']
+
+[[plugins]]
+repo = 'tpope/vim-rails'
 on_ft = ['ruby']
