@@ -2,7 +2,7 @@
 	name = Takuya Kosugiyama
 	email = re@itkq.jp
 	signingkey = E7A3B4722429F3D4AC7A268DBBDC3D0A1BE808A0
-[includeIf "gitdir:~/src/ghe"]
+[includeIf "gitdir:~/src/ghe*"]
   path = ~/.gitconfig_ckpd
 [color]
   ui = true
