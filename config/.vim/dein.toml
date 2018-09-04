@@ -236,3 +236,6 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 set statusline=%{anzu#search_status()}
 '''
+
+[[plugins]]
+repo = 'itkq/vim-open-github'
