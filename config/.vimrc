@@ -131,19 +131,4 @@ autocmd BufNewFile,BufRead *.iam set filetype=ruby
 autocmd BufNewFile,BufRead *.elb set filetype=ruby
 autocmd BufNewFile,BufRead *.route set filetype=ruby
 autocmd BufNewFile,BufRead *.group set filetype=ruby
-
-autocmd FileType c          setlocal sw=2 sts=0 ts=2 et
-autocmd FileType cpp        setlocal sw=2 sts=2 ts=2 et
-autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
-autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
-autocmd FileType groovy     setlocal sw=4 sts=4 ts=4 et
-autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
-autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et iskeyword+=! iskeyword+=?
-autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et iskeyword+=! iskeyword+=?
-autocmd FileType slim       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
-autocmd FileType haskell    setlocal sw=2 sts=2 ts=2 et
-autocmd FileType yacc       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType go         setlocal sw=2 sts=2 ts=2 et noexpandtab
-autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et noexpandtab
-autocmd FileType asm        setlocal sw=4 sts=4 ts=4 et noexpandtab
+autocmd BufNewFile,BufRead *.go setl filetype=go tabstop=4 shiftwidth=4 noexpandtab
