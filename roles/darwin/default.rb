@@ -26,7 +26,6 @@ dotfile '.railsrc'
 dotfile '.rake'
 dotfile '.tigrc'
 dotfile '.globalrc'
-dotfile '.rubocop.yml'
 
 dotfile '.iterm2'
 dotfile 'Library/Application Support/Code/User/settings.json' do
