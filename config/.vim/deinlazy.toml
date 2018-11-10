@@ -138,3 +138,11 @@ on_ft = ['ruby']
 [[plugins]]
 repo = 'tpope/vim-rails'
 on_ft = ['ruby']
+
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+on_ft = ['scala']
+
+[[plugins]]
+repo = 'itkq/fluentd-vim'
+on_ft = ['conf']
