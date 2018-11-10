@@ -77,7 +77,7 @@ function gpf() {
   read Answer\?'Are you sure? [Y/n] '
   case $Answer in
     '' | [Yy]* )
-      git push -f origin `current-branch`
+      git push --force-with-lease origin `current-branch`
       ;;
     * )
       echo "Force pushing interrupted."
