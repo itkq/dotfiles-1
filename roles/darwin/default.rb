@@ -31,3 +31,6 @@ dotfile '.iterm2'
 dotfile 'Library/Application Support/Code/User/settings.json' do
   source 'vscode/settings.json'
 end
+dotfile 'Library/Application Support/Code/User/keybindings.json' do
+  source 'vscode/keybindings.json'
+end

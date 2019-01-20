@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "editor.fontFamily": "Consolas",
+    "editor.fontFamily": "Consolas NF",
     "editor.fontSize": 13,
     "editor.wordWrap": "on",
     "workbench.colorTheme": "Atom One Dark",
@@ -23,7 +23,7 @@
         "editor.tabSize": 2
     },
     "workbench.startupEditor": "newUntitledFile",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "guides.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "[rust]": {
