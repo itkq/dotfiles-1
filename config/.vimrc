@@ -34,6 +34,7 @@ set encoding=utf-8
 set expandtab
 set hidden
 set history=256
+set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
