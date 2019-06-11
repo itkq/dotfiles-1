@@ -5,6 +5,9 @@ fi
 
 alias ls="ls -G"
 alias ll="ls -Gla"
+
+which gsed > /dev/null && alias sed='gsed'
+
 export BUNDLE_JOBS=4
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 export HOMEBREW_NO_AUTO_UPDATE=1
