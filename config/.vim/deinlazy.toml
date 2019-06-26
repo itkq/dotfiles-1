@@ -146,3 +146,11 @@ on_ft = ['scala']
 [[plugins]]
 repo = 'itkq/fluentd-vim'
 on_ft = ['conf']
+
+[[plugins]]
+repo = 'martinda/Jenkinsfile-vim-syntax'
+on_ft = ['groovy']
+
+[[plugins]]
+repo = 'vim-scripts/groovyindent-unix'
+on_ft = ['groovy']
