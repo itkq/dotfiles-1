@@ -154,3 +154,7 @@ on_ft = ['groovy']
 [[plugins]]
 repo = 'vim-scripts/groovyindent-unix'
 on_ft = ['groovy']
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+on_ft = ['ruby']
