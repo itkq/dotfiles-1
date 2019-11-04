@@ -3,6 +3,12 @@ if which tmux > /dev/null; then
 fi
 #source ~/.zsh/lib/ruby.zsh
 
+if ! grep -q pinentry-mac ~/.gnupg/gpg-agent.conf; then
+  ln -sf /Users/takuya-kosugiyama/src/github.com/itkq/config/config/.gnupg/gpg-agent.conf /Users/takuya-kosugiyama/.gnupg/gpg-agent.conf
+  pkill gpg-agent
+  echo "Updated gpg-agent.conf and restart gpg-agent"
+fi
+
 alias ls="ls -G"
 alias ll="ls -Gla"
 
