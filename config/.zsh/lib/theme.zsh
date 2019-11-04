@@ -18,6 +18,7 @@ precmd() {
   fi
   local right1="$(date +"%H:%M") "
   local right2="$vcs_info_msg_0_"
+  local right3="$(echo $USER)@$(echo $HOST)"
 
   psvar=()
   psvar[1]="${left1}"
@@ -25,12 +26,13 @@ precmd() {
   psvar[3]="${(r:($COLUMNS-${#left1}-${#left2}-${#right1}):: :)}"
   psvar[4]="${right1}"
   psvar[5]="${right2}"
+  psvar[6]="${right3}"
 
   if [[ "x$last_status" == "x0" ]]; then
     PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v
-%F{green}$%f "
+%6v %F{green}$%f "
   else
     PROMPT="%F{blue}%4v%F{cyan}%1v%f%2v%3v
-%F{red}$%f "
+%6v %F{red}$%f "
   fi
 }
