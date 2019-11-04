@@ -21,6 +21,7 @@ endif
 filetype plugin indent on
 syntax enable
 
+set background=dark
 set ambiwidth=double
 set autoindent
 set autoread
