@@ -121,14 +121,14 @@ on_ft = ['coffee']
 
 [[plugins]]
 repo = 'hashivim/vim-terraform'
-on_ft = ['tf']
+on_ft = ['terraform']
 hook_add = '''
 let g:terraform_fmt_on_save = 1
 '''
 
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
-on_ft = ['tf']
+on_ft = ['terraform']
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
