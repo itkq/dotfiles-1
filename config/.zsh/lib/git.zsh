@@ -226,7 +226,5 @@ function remove_merged_branches() {
 }
 
 function mkpr() {
-	local current_branch_name=$(git symbolic-ref --short HEAD | xargs ruby -r cgi -e 'puts CGI.escape(ARGV[0])')
-	local repo_url=$(git remote show -n upstream | grep 'Push  URL' | grep -E -o '[^ ]+$' | sed -e 's|^https://||' -e 's/^git@//' -e 's/\.git$//' -e 's|:|/|')
-	open "https://${repo_url}/compare/master...itkq:${current_branch_name}?expand=1"
+  open "https://ghe.ckpd.co/itkq/$(basename `git rev-parse --show-toplevel`)/pull/new/$(git rev-parse --abbrev-ref HEAD)"
 }
