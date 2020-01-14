@@ -1,3 +1,3 @@
-github_binary 'peco/peco'
+package 'peco'
 
 dotfile '.peco'
