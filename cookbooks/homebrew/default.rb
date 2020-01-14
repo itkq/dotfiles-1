@@ -12,6 +12,7 @@ package 'telnet'
 package 'ngrep'
 package 'entr'
 package 'jq'
+package 'ghq'
 
 package 'global' do
   options '--with-exuberant-ctags --with-pygments'
