@@ -1,0 +1,7 @@
+inherit_from: ~/src/github.com/cookpad/styleguide/.rubocop.yml
+
+Layout/LineLength:
+  Enabled: false
+
+Lint/DuplicateHashKey:
+  Enabled: true
