@@ -190,11 +190,11 @@ function gupdate(){
   if git remote | grep -q upstream; then
     git fetch upstream
     remove_merged_branches
-    git merge --ff upstream/master
+    git rebase upstream/master
   else
     git fetch origin
     remove_merged_branches
-    git merge --ff origin/master
+    git rebase origin/master
   fi
   (( $change_branch_flg )) && git checkout -
   (( $stash_flg )) && git stash pop
@@ -226,5 +226,5 @@ function remove_merged_branches() {
 }
 
 function mkpr() {
-  open "https://ghe.ckpd.co/itkq/$(basename `git rev-parse --show-toplevel`)/pull/new/$(git rev-parse --abbrev-ref HEAD)"
+  open "https://$(pwd | gsed -e "s#$GOPATH/src/##" | cut -d'/' -f1)/itkq/$(basename `git rev-parse --show-toplevel`)/pull/new/$(git rev-parse --abbrev-ref HEAD)"
 }
