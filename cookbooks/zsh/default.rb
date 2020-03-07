@@ -13,7 +13,7 @@ execute "chsh -s /bin/zsh #{node[:user]}" do
   # user 'root'
 end
 
-execute 'Install zplug' do
-  command 'curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh'
-  not_if 'test -d ~/.zplug'
+execute 'Install zinit' do
+  command 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"'
+  not_if 'test -d ~/.zinit'
 end

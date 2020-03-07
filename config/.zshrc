@@ -9,8 +9,19 @@ function profile() {
     echo "${SEC}.`printf '%09d' $USEC`: $1"
 }
 
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+
 bindkey -e
 
+source ~/.zinit/bin/zinit.zsh
 source ~/.zsh/lib/go.zsh
 source ~/.zsh/lib/aliases.zsh
 source ~/.zsh/lib/basic.zsh
@@ -24,7 +35,7 @@ source ~/.zsh/lib/python.zsh
 source ~/.zsh/lib/theme.zsh
 source ~/.zsh/lib/tmux.zsh
 source ~/.zsh/lib/bundle.zsh
-source ~/.zsh/lib/zplug.zsh
+source ~/.zsh/lib/zinit.zsh
 
 # Environment-local configurations
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
