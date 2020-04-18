@@ -151,7 +151,7 @@ let g:taboo_tabline = 0
 '''
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'itkq/ale'
 hook_add = '''
 let g:ale_sign_error = 'E➤'
 let g:ale_sign_warning = 'W➤'
@@ -160,6 +160,7 @@ let g:ale_lint_on_text_changed = 'normal'
 
 let g:ale_linters = {
 \   'html': [],
+\   'jsonnet': ['jsonnetfmt'],
 \}
 
 let g:ale_fixers = {
@@ -174,6 +175,7 @@ let g:ale_fixers = {
 \   'less': ['prettier'],
 \   'scss': ['prettier'],
 \   'python': ['autopep8'],
+\   'jsonnet': ['jsonnetfmt'],
 \}
 
 let g:ale_fix_on_save = 1
