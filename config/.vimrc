@@ -136,3 +136,4 @@ autocmd BufNewFile,BufRead *.group set filetype=ruby
 autocmd BufNewFile,BufRead *.go setl filetype=go tabstop=4 shiftwidth=4 noexpandtab
 autocmd BufNewFile,BufRead Jenkinsfile setl filetype=groovy tabstop=4 shiftwidth=4 noexpandtab
 autocmd BufNewFile,BufRead *.jsonnet setl nocindent autoindent
+autocmd BufNewFile,BufRead *.mtail set filetype=mtail
