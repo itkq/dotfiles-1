@@ -35,6 +35,8 @@ source ~/.zsh/lib/python.zsh
 source ~/.zsh/lib/theme.zsh
 source ~/.zsh/lib/tmux.zsh
 source ~/.zsh/lib/bundle.zsh
+source ~/.zsh/lib/k8s.zsh
+source ~/.zsh/lib/gcloud.zsh
 source ~/.zsh/lib/zinit.zsh
 
 # Environment-local configurations
