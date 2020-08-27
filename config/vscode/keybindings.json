@@ -28,5 +28,10 @@
         "key": "ctrl+;",
         "command": "workbench.action.focusFirstEditorGroup",
         "when": "terminalFocus"
-    }
+    },
+    {
+        "key": "ctrl+j",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
 ]
