@@ -1,5 +1,5 @@
 package 'envchain'
-package 'openssl'
+package 'openssl@1.1'
 package 'jid'
 package 'gist'
 package 'direnv'
