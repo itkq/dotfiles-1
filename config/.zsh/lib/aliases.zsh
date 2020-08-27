@@ -27,3 +27,7 @@ function mkcd() {
 }
 
 which pget > /dev/null && alias wget=pget
+alias d="direnv allow"
+alias de="direnv edit"
+
+alias k="kubectl"
