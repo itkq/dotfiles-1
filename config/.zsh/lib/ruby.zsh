@@ -23,3 +23,5 @@ alias -g REP="RAILS_ENV=production"
 function hr() {
   sed -i '' -e 's/:\([a-zA-Z_]*\) =>/\1:/g' $1
 }
+
+export DISABLE_SPRING=1
