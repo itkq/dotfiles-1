@@ -15,6 +15,8 @@ package 'jq'
 package 'ghq'
 package 'bat'
 package 'go'
+package 'github/gh/gh'
+package 'noti'
 
 execute 'brew tap kyoshidajp/ghkw'
 package 'ghkw'
