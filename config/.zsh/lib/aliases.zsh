@@ -31,3 +31,7 @@ alias d="direnv allow"
 alias de="direnv edit"
 
 alias k="kubectl"
+
+function docker-bash() {
+  docker ps | tail -n+2 | peco | awk '{print $1}' | xargs -I%% -o docker exec -it %% /bin/bash
+}

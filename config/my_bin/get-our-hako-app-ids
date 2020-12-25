@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require 'net/http'
+require 'json'
+
+if ARGV.size != 1
+  abort "Usage: #{$0} team"
+end
+
+team = ARGV[0]
+
+uri = URI('https://json-grpc-staging-gateway.ckpd.co/hako_console/v1/hako_apps')
+json_resp =
+  Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+    req = Net::HTTP::Get.new(uri)
+    req['X-Json-Grpc-Target'] = 'hako-console-grpc'
+
+    resp = http.request(req)
+    JSON.parse(resp.body)
+  end
+
+app_ids = json_resp.map do |a|
+  hako_app = a['hakoApp']
+  hako_app['appId'] if hako_app['teams']&.any? { |t| t['name'] == team }
+end.compact
+
+puts app_ids.sort.join("\n")

@@ -18,7 +18,7 @@ if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-
+unsetopt BEEP
 bindkey -e
 
 source ~/.zinit/bin/zinit.zsh

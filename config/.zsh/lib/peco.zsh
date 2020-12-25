@@ -8,9 +8,9 @@ fi
 
 # history
 function peco-select-history() {
-	BUFFER=$(fc -l -r -n 1 | peco --query "$LBUFFER" --prompt "[zsh history]")
-	CURSOR=$#BUFFER
-	zle redisplay
+  BUFFER=$(fc -l -r -n 1 | peco --query "$LBUFFER" --prompt "[zsh history]")
+  CURSOR=$#BUFFER
+  zle redisplay
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history

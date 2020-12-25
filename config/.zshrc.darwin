@@ -5,7 +5,7 @@ fi
 
 if ! grep -q pinentry-mac ~/.gnupg/gpg-agent.conf; then
   ln -sf /Users/takuya-kosugiyama/src/github.com/itkq/config/config/.gnupg/gpg-agent.conf /Users/takuya-kosugiyama/.gnupg/gpg-agent.conf
-  pkill gpg-agent
+  gpgconf --kill gpg-agent
   echo "Updated gpg-agent.conf and restart gpg-agent"
 fi
 

@@ -1,10 +1,8 @@
 # tmux
 export PATH="$HOME/bin:$PATH"
 alias tmux="tmux -2"
-if [ -z "$TMUX" -a -z "$STY" ]; then
-  if type tmux > /dev/null 2>&1; then
-    tmux new-session -A -s "*scratch*"
-  fi
+if [ -z "$TMUX" -a -z "$STY" ] && type tmux > /dev/null 2>&1; then
+  tmux new-session -A -s "*scratch*"
 fi
 
 alias tma="tmux attach-session -t"

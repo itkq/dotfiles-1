@@ -1,7 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
     "editor.fontFamily": "Consolas NF",
-    "editor.fontSize": 13,
+    "editor.fontSize": 15,
     "editor.wordWrap": "on",
     "workbench.colorTheme": "Atom One Dark",
     "vim.useSystemClipboard": true,
@@ -17,17 +17,116 @@
         }
     ],
     "vim.hlsearch": true,
-    "go.lintOnSave": "off",
     "extensions.ignoreRecommendations": true,
-    "[vue]": {
-        "editor.tabSize": 2
-    },
     "workbench.startupEditor": "newUntitledFile",
-    "window.zoomLevel": 1,
-    "guides.enabled": false,
+    "window.zoomLevel": 2,
     "explorer.confirmDragAndDrop": false,
-    "[rust]": {
+    "terminal.integrated.fontSize": 16,
+    "[typescript]": {
+        "editor.tabSize": 2,
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2,
+    },
+    "[css]": {
+        "editor.tabSize": 2,
+    },
+    // "ruby.useBundler": true,
+    // "ruby.useLanguageServer": true,
+    // "ruby.lint": {
+    //     "rubocop": {
+    //         "useBundler": false
+    //     },
+    // },
+    // "ruby.format": "rubocop"
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/vendor/**": true,
+    },
+    "[terraform]": {
         "editor.formatOnSave": true
     },
-    "terminal.integrated.fontSize": 13,
+    "terraform.languageServer": {
+        "external": true,
+        "pathToBinary": "/Users/takuya-kosugiyama/.vscode/extensions/hashicorp.terraform-2.0.1/lsp/terraform-ls",
+        "args": [
+            "serve"
+        ]
+    },
+    "files.insertFinalNewline": true,
+    "terminal.integrated.fontFamily": "Consolas NF",
+    "settingsSync.ignoredSettings": [
+        "editor.fontFamily",
+        "terminal.integrated.fontFamily",
+        "terminal.integrated.fontSize",
+        "editor.fontSize",
+        "workbench.colorTheme"
+    ],
+    "debug.console.fontFamily": "Consolas",
+    "debug.javascript.suggestPrettyPrinting": false,
+    "ruby.useLanguageServer": true,
+    //////
+    // go
+    //////
+    "go.useLanguageServer": true,
+    "go.toolsEnvVars": {
+        "GO111MODULE": "on",
+    },
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        "editor.snippetSuggestions": "none",
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    },
+    "go.lintOnSave": "off",
+    "editor.tabSize": 2,
+    "cSpell.userWords": [
+        "BARBEQUE",
+        "Cookpadbot",
+        "Retiee's",
+        "Techlife",
+        "backoff",
+        "blueprintjs",
+        "certificatemanager",
+        "cookpad",
+        "dynamoose",
+        "mrkdwn"
+    ],
+    // "go.useLanguageServer": true,
+    // "gopls": {
+    //     // === Officially supported Settings ===
+
+    //     // This controls the information that appears in the hover text.
+    //     "hoverKind": "SynopsisDocumentation",
+    //     // If true, then completion responses may contain placeholders for function parameters or struct fields.
+    //     "usePlaceholders": true,
+    //     // This controls where points documentation for given package in `textDocument/documentLink`.
+    //     "linkTarget": "pkg.go.dev",
+
+    //     // === Experimental Settings ===
+
+    //     // If true, it enables the use of the staticcheck.io analyzers.
+    //     // Warning: This will significantly increase memory usage.
+    //     "staticcheck": false,
+    //     // If false, indicates that the user does not want documentation with completion results.
+    //     "completionDocumentation": true,
+    //     // If true, the completion engine is allowed to make suggestions for packages that you do not currently import.
+    //     "completeUnimported": true,
+    //     // If true, this turns on the ability to return completions from deep inside relevant entities, rather than just the locally accessible ones.
+    //     "deepCompletion": true
+    // }
+    // "solargraph.useBundler": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }

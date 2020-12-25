@@ -1,4 +1,4 @@
-inherit_from: ~/src/github.com/cookpad/styleguide/.rubocop.yml
+inherit_from: ~/src/github.com/itkq/styleguide/.rubocop.yml
 
 Layout/LineLength:
   Enabled: false
