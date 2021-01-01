@@ -64,6 +64,14 @@ set vb t_vb=
 setf text
 let g:is_posix = 1
 
+if system('uname -a | grep microsoft') != ''
+  augroup Yank
+    au!
+    autocmd TextYankPost * :call system('win32yank.exe -i', @")
+  augroup END
+  noremap <silent> p :call setreg('"', system('win32yank.exe -o'))<CR>""p
+endif
+
 imap <C-j> <ESC>
 inoremap <silent> jj <ESC>
 inoremap <silent> jf <ESC>
@@ -91,6 +99,7 @@ nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap W :<C-u>wq<CR>
 nnoremap D :<C-u>q<CR>
+nnoremap Y y$
 
 hi LineNr ctermfg=241
 hi CursorLineNr ctermfg=166
