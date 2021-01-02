@@ -1,4 +1,5 @@
 package 'git'
+package 'tig'
 
 dotfile '.git-template'
 dotfile '.gitconfig'
