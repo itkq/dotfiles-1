@@ -31,3 +31,7 @@ alias d="direnv allow"
 alias de="direnv edit"
 
 alias k="kubectl"
+
+alias l="ls -l"
+alias ll="ls -l"
+alias lll="ls -l"
