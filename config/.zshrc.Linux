@@ -43,3 +43,9 @@ export BUNDLER_EDITOR="vim"
 function environ() {
 	ruby -e 'puts STDIN.read.split("\x0").map{|l| l.split("=", 2)}.to_h["'$1'"]'
 }
+
+if ! ssh-add -l | grep -q re@itkq.jp; then
+	ssh-add ~/.ssh/id_ecdsa
+fi
+
+eval $(dircolors -b ~/.dircolors)

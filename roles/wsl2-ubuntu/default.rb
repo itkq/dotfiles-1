@@ -1,0 +1,21 @@
+include_role 'base'
+
+include_cookbook 'git'
+include_cookbook 'peco'
+include_cookbook 'tmux'
+include_cookbook 'zsh'
+include_cookbook 'vim'
+
+package 'bat'
+package 'jsonnet'
+package 'jq'
+
+dotfile '.gemrc'
+dotfile '.peco'
+dotfile '.pryrc'
+dotfile '.psqlrc'
+dotfile '.railsrc'
+dotfile '.rake'
+dotfile '.tigrc'
+dotfile '.globalrc'
+dotfile '.rubocop.yml'
