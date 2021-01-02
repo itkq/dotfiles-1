@@ -42,7 +42,8 @@ source ~/.zsh/lib/zinit.zsh
 
 # Environment-local configurations
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
-[ -f ~/.zshrc.local ]   && source ~/.zshrc.local
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+uname -a | grep -q microsoft && [ -f ~/.zshrc.wsl ] && source ~/.zshrc.wsl
 
 # Cookpad
 [ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd

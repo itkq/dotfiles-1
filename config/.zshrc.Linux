@@ -1,9 +1,7 @@
-#if which tmux > /dev/null && pgrep xmonad > /dev/null; then
 if which tmux > /dev/null && pgrep gnome-session > /dev/null; then
 	source ~/.zsh/lib/tmux.zsh
 fi
 
-export GHQ=~/bin/ghq
 alias ls="ls -la --color"
 
 if ! pgrep ssh-agent > /dev/null; then
@@ -34,8 +32,8 @@ alias ss='eval "$(ssh-agent)"; ssh-add ~/.ssh/id_rsa.github'
 export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="/usr/local/llvm/bin:${PATH}"
 
-. ~/.zsh/bundle/ssh-find-agent/ssh-find-agent.sh
-set_ssh_agent_socket
+# . ~/.zsh/bundle/ssh-find-agent/ssh-find-agent.sh
+# set_ssh_agent_socket
 
 export EDITOR="vim"
 export BUNDLER_EDITOR="vim"
@@ -43,9 +41,3 @@ export BUNDLER_EDITOR="vim"
 function environ() {
 	ruby -e 'puts STDIN.read.split("\x0").map{|l| l.split("=", 2)}.to_h["'$1'"]'
 }
-
-if ! ssh-add -l | grep -q re@itkq.jp; then
-	ssh-add ~/.ssh/id_ecdsa
-fi
-
-eval $(dircolors -b ~/.dircolors)

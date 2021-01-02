@@ -5,8 +5,8 @@ node.reverse_merge!(
 )
 
 if ENV['WSL_DISTRO_NAME']
-  platform, platform_version = ENV['WSL_DISTRO_NAME'].split('-').map(&:downcase)
-  node[:platform] = "wsl2-#{platform}"
+  _, platform_version = ENV['WSL_DISTRO_NAME'].split('-').map(&:downcase)
+  node[:platform] = 'wsl'
   node[:platform_version] = platform_version
 end
 

@@ -1,8 +1,13 @@
-if node[:platform] != 'darwin'
-  package 'zsh'
+package 'zsh'
+
+case node[:platform]
+when 'wsl'
   dotfile '.zshrc.Linux'
-else
+  dotfile '.zshrc.wsl'
+when 'darwin'
   dotfile '.zshrc.darwin'
+else
+  dotfile '.zshrc.Linux'
 end
 
 dotfile '.zsh'

@@ -1,0 +1,5 @@
+if ! ssh-add -l | grep -q re@itkq.jp; then
+	ssh-add ~/.ssh/id_ecdsa
+fi
+
+eval $(dircolors -b ~/.dircolors)
