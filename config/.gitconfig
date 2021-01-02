@@ -1,7 +1,7 @@
 [user]
   name = Takuya Kosugiyama
   email = re@itkq.jp
-	signingkey = E7A3B4722429F3D4AC7A268DBBDC3D0A1BE808A0
+	signingkey = CB6C984AD4E1D19A3BE91693E850CFEDFD70BAB7
 [includeIf "gitdir:~/src/ghe*/**"]
   path = ~/.gitconfig_ckpd
 [includeIf "gitdir:~/src/github.com/cookpad/*/**"]
@@ -32,7 +32,7 @@
 [gpg]
 	program = gpg
 [commit]
-	gpgsign = true
+  gpgsign = true
 [grep]
 	lineNumber = true
 [fetch]
