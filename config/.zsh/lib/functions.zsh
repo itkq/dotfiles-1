@@ -190,3 +190,13 @@ function wifi() {
     reboot) networksetup -setairportpower en0 off && networksetup -setairportpower en0 on ;;
   esac
 }
+
+function get-ssl-cert() {
+  if [ $# -ne 1 ]; then
+    echo 'usage: get-ssl-cert domain'
+    return 1
+  fi
+
+  local domain=$1
+  openssl s_client -connect $domain:443 -servername $domain -showcerts </dev/null 2>/dev/null | openssl x509 -noout -text
+}
