@@ -1,6 +1,6 @@
 # Go
 export GOPATH=$HOME
-export PATH="${GOPATH}/bin:$PATH"
+export PATH="${GOPATH}/bin:/usr/local/go/bin:$PATH"
 export GOMAXPROCS=4
 
 # The next line updates PATH for the Google Cloud SDK.
