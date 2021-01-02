@@ -23,6 +23,7 @@ bindkey -e
 
 source ~/.zinit/bin/zinit.zsh
 source ~/.zsh/lib/go.zsh
+source ~/.zsh/lib/rust.zsh
 source ~/.zsh/lib/aliases.zsh
 source ~/.zsh/lib/basic.zsh
 source ~/.zsh/lib/completion.zsh
