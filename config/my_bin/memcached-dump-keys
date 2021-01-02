@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]]; then
+  echo "usage: $0 host port" >&1
+  exit 1
+fi
+
+host=$1
+port=$2
+
+echo 'stats items' \
+  | nc $host $port \
+  | grep -oe ':[0-9]*:' \
+  | cut -d':' -f2 \
+  | sort -n \
+  | uniq \
+  | xargs -L1 -I {} bash -c "echo 'stats cachedump {} 1000' | nc $host $port"
