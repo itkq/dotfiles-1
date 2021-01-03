@@ -39,6 +39,7 @@ source ~/.zsh/lib/bundle.zsh
 source ~/.zsh/lib/k8s.zsh
 source ~/.zsh/lib/gcloud.zsh
 source ~/.zsh/lib/zinit.zsh
+source ~/.zsh/lib/tfenv.zsh
 
 # Environment-local configurations
 [ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
