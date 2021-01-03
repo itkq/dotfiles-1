@@ -3,3 +3,7 @@ if ! ssh-add -l | grep -q re@itkq.jp; then
 fi
 
 eval $(dircolors -b ~/.dircolors)
+
+if ! pgrep gpg-agent >/dev/null; then
+  source <(gpg-agent --daemon)
+fi
