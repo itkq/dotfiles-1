@@ -7,3 +7,4 @@ eval $(dircolors -b ~/.dircolors)
 if ! pgrep gpg-agent >/dev/null; then
   source <(gpg-agent --daemon)
 fi
+export GPG_TTY=$(tty)
