@@ -9,6 +9,8 @@ include_cookbook 'vim'
 package 'bat'
 package 'jsonnet'
 package 'jq'
+package 'whois'
+package 'net-tools'
 
 dotfile '.gemrc'
 dotfile '.peco'

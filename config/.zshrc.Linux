@@ -4,40 +4,17 @@ fi
 
 alias ls="ls -la --color"
 
-if ! pgrep ssh-agent > /dev/null; then
-	ssh-agent > "${HOME}/.ssh/agent_env"
-	chmod 600 "${HOME}/.ssh/agent_env"
-fi
-
-if [ -e ~/.ssh/agent_env ]; then
-	source ~/.ssh/agent_env > /dev/null
-fi
-
 # Ruby
 export PATH="/usr/share/rbenv/bin:$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then
 	source ~/.zsh/lib/ruby.zsh
 fi
 
-export BUNDLE_JOBS=16
-alias be="bundle exec"
+if ! pgrep ssh-agent > /dev/null; then
+    ssh-agent > "${HOME}/.ssh/agent_env"
+    chmod 600 "${HOME}/.ssh/agent_env"
+fi
 
-alias x='startx'
-
-alias ss='eval "$(ssh-agent)"; ssh-add ~/.ssh/id_rsa.github'
-
-#setxkbmap -rules evdev -model us-layout us
-#xmodmap ~/.Xmodmap 2> /dev/null
-
-export PATH="${HOME}/.cabal/bin:${PATH}"
-export PATH="/usr/local/llvm/bin:${PATH}"
-
-# . ~/.zsh/bundle/ssh-find-agent/ssh-find-agent.sh
-# set_ssh_agent_socket
-
-export EDITOR="vim"
-export BUNDLER_EDITOR="vim"
-
-function environ() {
-	ruby -e 'puts STDIN.read.split("\x0").map{|l| l.split("=", 2)}.to_h["'$1'"]'
-}
+if [ -e ~/.ssh/agent_env ]; then
+    source ~/.ssh/agent_env > /dev/null
+fi
