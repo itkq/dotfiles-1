@@ -21,6 +21,11 @@ fi
 
 bindkey -e
 
+# Environment-local configurations
+[ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+uname -a | grep -q microsoft && [ -f ~/.zshrc.wsl ] && source ~/.zshrc.wsl
+
 source ~/.zinit/bin/zinit.zsh
 source ~/.zsh/lib/go.zsh
 source ~/.zsh/lib/rust.zsh
@@ -40,11 +45,6 @@ source ~/.zsh/lib/k8s.zsh
 source ~/.zsh/lib/gcloud.zsh
 source ~/.zsh/lib/zinit.zsh
 source ~/.zsh/lib/tfenv.zsh
-
-# Environment-local configurations
-[ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-uname -a | grep -q microsoft && [ -f ~/.zshrc.wsl ] && source ~/.zshrc.wsl
 
 # Cookpad
 [ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd
