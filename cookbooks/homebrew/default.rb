@@ -1,4 +1,5 @@
 %w[
+  awscli
   bat
   direnv
   envchain
