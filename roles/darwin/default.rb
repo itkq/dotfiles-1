@@ -1,10 +1,9 @@
 include_role 'base'
 
-# include_cookbook 'xcode'
+include_cookbook 'xcode'
 include_cookbook 'homebrew'
 include_cookbook 'git'
 include_cookbook 'vim'
-include_cookbook 'neovim'
 include_cookbook 'zsh'
 include_cookbook 'peco'
 include_cookbook 'fzf'
@@ -24,11 +23,4 @@ dotfile '.rake'
 dotfile '.tigrc'
 dotfile '.globalrc'
 dotfile '.rubocop.yml'
-
 dotfile '.iterm2'
-dotfile 'Library/Application Support/Code/User/settings.json' do
-  source 'vscode/settings.json'
-end
-dotfile 'Library/Application Support/Code/User/keybindings.json' do
-  source 'vscode/keybindings.json'
-end

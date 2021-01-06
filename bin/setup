@@ -4,18 +4,29 @@ set -e
 mitamae_version="1.11.7"
 mitamae_linux_sha256="4e846c132b15749d0a826f01c52618fa7c04ed1514e074cd0d108e5810188458"
 mitamae_darwin_sha256="60e689bc81daca1a5a1b982c345f839bbf7d4b240f69d98b2563e7affa837491"
-
+mitamae_darwin_arm64_sha256="37dbc3fcd51ed81343fed0ee062c8e66c0d3443a93307125f0e4de71ae1025c6"
 
 mitamae_cache="mitamae-${mitamae_version}"
 if ! [ -f "bin/${mitamae_cache}" ]; then
   case "$(uname)" in
     "Linux")
       mitamae_bin="mitamae-x86_64-linux"
+      mitamae_url="https://github.com/k0kubun/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}.tar.gz"
       mitamae_sha256="$mitamae_linux_sha256"
       ;;
     "Darwin")
-      mitamae_bin="mitamae-x86_64-darwin"
-      mitamae_sha256="$mitamae_darwin_sha256"
+      case "$(uname -m)" in
+        "x86_64")
+          mitamae_bin="mitamae-x86_64-darwin"
+          mitamae_url="https://github.com/k0kubun/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}.tar.gz"
+          mitamae_sha256="$mitamae_darwin_sha256"
+          ;;
+        "arm64")
+          mitamae_bin="mitamae-arm64-darwin"
+          mitamae_url="https://itkq-misc-public.s3-ap-northeast-1.amazonaws.com/mitamae-arm64-darwin-1.11.7.tar.gz"
+          mitamae_sha256="$mitamae_darwin_arm64_sha256"
+          ;;
+      esac
       ;;
     *)
       echo "unexpected uname: $(uname)"
@@ -23,7 +34,7 @@ if ! [ -f "bin/${mitamae_cache}" ]; then
       ;;
   esac
 
-  curl -o "bin/${mitamae_bin}.tar.gz" -fL "https://github.com/k0kubun/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}.tar.gz"
+  curl -o "bin/${mitamae_bin}.tar.gz" -fL "$mitamae_url"
   sha256="$(/usr/bin/openssl dgst -sha256 "bin/${mitamae_bin}.tar.gz" | cut -d" " -f2)"
   if [ "$mitamae_sha256" != "$sha256" ]; then
     echo "checksum verification failed!\nexpected: ${mitamae_sha256}\n  actual: ${sha256}"

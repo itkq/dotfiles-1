@@ -24,20 +24,3 @@ unless ENV['PATH'].include?("#{ENV['HOME']}/.cargo/bin:")
   MItamae.logger.info('Prepending ~/.cargo/bin to PATH during this execution')
   ENV['PATH'] = "#{ENV['HOME']}/.cargo/bin:#{ENV['PATH']}"
 end
-
-define :cargo do
-  execute "cargo install --verbose #{params[:name]}" do
-    not_if %Q[cargo install --list | grep "^#{params[:name]} "]
-  end
-end
-
-# %w(rust-src rust-analysis rls-preview).each do |c|
-#   execute "rustup component add #{c}" do
-#     not_if "rustup component list | grep -q #{c}"
-#   end
-# end
-
-cargo 'racer'
-cargo 'cargo-edit'
-cargo 'rusty-tags'
-cargo 'ripgrep'
