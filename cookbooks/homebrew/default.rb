@@ -1,18 +1,18 @@
-package 'envchain'
-package 'openssl@1.1'
-package 'jid'
-package 'gist'
-package 'direnv'
-package 'autojump'
-package 'tig'
-package 'hugo'
-package 'tree'
-package 'telnet'
-package 'ngrep'
-package 'entr'
-package 'jq'
-package 'ghq'
-package 'bat'
-package 'go'
-package 'github/gh/gh'
-package 'noti'
+%w[
+  bat
+  direnv
+  envchain
+  ghq
+  github/gh/gh
+  go
+  jq
+  ngrep
+  noti
+  hugo
+  telnet
+  tfenv
+  tig
+  tree
+].each do |pkg|
+  package pkg
+end
