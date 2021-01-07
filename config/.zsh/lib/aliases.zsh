@@ -21,5 +21,6 @@ alias de="direnv edit"
 
 alias k="kubectl"
 
+alias ll="ls -l --color=auto"
 alias l=ll
 alias lll=ll
