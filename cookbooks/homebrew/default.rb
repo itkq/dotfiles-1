@@ -3,6 +3,7 @@
   bat
   direnv
   envchain
+  gh
   ghq
   github/gh/gh
   go
