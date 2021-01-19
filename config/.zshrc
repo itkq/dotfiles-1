@@ -46,8 +46,8 @@ source ~/.zsh/lib/gcloud.zsh
 source ~/.zsh/lib/zinit.zsh
 source ~/.zsh/lib/tfenv.zsh
 
-# Cookpad
-[ -f ~/.zshrc.ckpd ] && source ~/.zshrc.ckpd
+# Ubie
+[ -f ~/.zshrc.ubie ] && source ~/.zshrc.ubie
 
 export NVM_DIR="/Users/itkq/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
