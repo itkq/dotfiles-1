@@ -6,6 +6,8 @@
   path = ~/.gitconfig_ckpd
 [includeIf "gitdir:~/src/github.com/cookpad/*/**"]
   path = ~/.gitconfig_ckpd
+[includeIf "gitdir:~/src/github.com/ubie-inc/*/**"]
+  path = ~/.gitconfig_ubie
 [color]
   ui = true
 [core]
