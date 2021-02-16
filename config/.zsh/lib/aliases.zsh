@@ -22,9 +22,9 @@ alias de="direnv edit"
 alias k="kubectl"
 
 if [[ $(uname) -eq "Darwin" ]]; then
-  alias ll="ls -l"
+  alias ll="ls -la"
 else
-  alias ll="ls -l --color=auto"
+  alias ll="ls -la --color=auto"
 fi
 
 alias l=ll
