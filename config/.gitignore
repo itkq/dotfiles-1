@@ -30,3 +30,4 @@ GTAGS
 .vscode/
 tfplan
 *.tsbuildinfo
+/.idea/misc.xml
