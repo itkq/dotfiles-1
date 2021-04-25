@@ -241,4 +241,7 @@ set statusline=%{anzu#search_status()}
 '''
 
 [[plugins]]
-repo = 'itkq/vim-open-github'
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'tyru/open-browser-github.vim'
