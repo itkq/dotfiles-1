@@ -185,16 +185,19 @@ function gupdate(){
   local stash_flg=0
   local change_branch_flg=0
   [ -z "$(git status --short)" ] || (git stash push -u -q && stash_flg=1)
-  [ "$(__current_branch)" != "master" ] && git checkout master && change_branch_flg=1
+  local base_branch="master"
+  if $(git branch -a | grep -q remotes/origin/develop); then
+    base_branch="develop"
+  fi;
+
+  [ "$(__current_branch)" != $base_branch ] && git checkout $base_branch && change_branch_flg=1
 
   if git remote | grep -q upstream; then
     git fetch upstream
-    remove_merged_branches
-    git rebase upstream/master
+    git rebase upstream/$base_branch
   else
     git fetch origin
-    remove_merged_branches
-    git rebase origin/master
+    git rebase origin/$base_branch
   fi
   (( $change_branch_flg )) && git checkout -
   (( $stash_flg )) && git stash pop
