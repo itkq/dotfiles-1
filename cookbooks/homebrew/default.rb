@@ -6,6 +6,7 @@
   gh
   ghq
   github/gh/gh
+  git-secrets
   go
   jq
   ngrep
